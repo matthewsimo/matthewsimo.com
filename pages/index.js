@@ -9,11 +9,11 @@ const Home = () => (
 
     <main>
       <h1 className="title">
-        Welcome to <a href="https://nextjs.org">Next.js!</a>
+        Welcome to <a href="https://nextjs.org">Next.js! yo</a>
       </h1>
 
       <p className="description">
-        Get started by editing <code>pages/index.js</code>
+        false false false
       </p>
 
       <div className="grid">
@@ -45,158 +45,21 @@ const Home = () => (
           </p>
         </a>
       </div>
+      <div>
+        <code>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tempus iaculis urna id volutpat lacus laoreet. Vitae tempus quam pellentesque nec nam aliquam sem et tortor. Nullam eget felis eget nunc lobortis mattis aliquam faucibus. Massa ultricies mi quis hendrerit dolor magna eget est. Dui nunc mattis enim ut tellus elementum sagittis vitae et. Sed felis eget velit aliquet. Tempus egestas sed sed risus pretium quam. Mattis rhoncus urna neque viverra justo nec ultrices. In nisl nisi scelerisque eu. Congue nisi vitae suscipit tellus mauris a diam maecenas sed. Proin sed libero enim sed faucibus turpis in eu.
+
+          Fringilla urna porttitor rhoncus dolor purus. Tincidunt dui ut ornare lectus sit amet est placerat. Ut diam quam nulla porttitor massa id neque aliquam vestibulum. Gravida quis blandit turpis cursus in hac habitasse platea. Quam pellentesque nec nam aliquam sem et tortor consequat id. Porttitor massa id neque aliquam vestibulum morbi. Posuere ac ut consequat semper viverra nam libero. Ornare arcu odio ut sem. Lectus proin nibh nisl condimentum id venenatis a condimentum vitae. Fames ac turpis egestas sed tempus urna et. Orci ac auctor augue mauris. Tortor aliquam nulla facilisi cras. Vel orci porta non pulvinar. Ipsum suspendisse ultrices gravida dictum fusce ut placerat orci. Id donec ultrices tincidunt arcu. Faucibus ornare suspendisse sed nisi lacus sed viverra.
+
+          Morbi non arcu risus quis. Cursus sit amet dictum sit amet justo donec enim diam. Commodo sed egestas egestas fringilla phasellus faucibus scelerisque eleifend donec. Ac odio tempor orci dapibus ultrices in. Imperdiet sed euismod nisi porta lorem mollis aliquam ut. Tristique senectus et netus et malesuada fames ac turpis egestas. Id neque aliquam vestibulum morbi blandit cursus risus at ultrices. Viverra nam libero justo laoreet. Egestas integer eget aliquet nibh praesent tristique magna. Et sollicitudin ac orci phasellus egestas tellus rutrum. Facilisi etiam dignissim diam quis. Rhoncus est pellentesque elit ullamcorper dignissim cras tincidunt. Scelerisque fermentum dui faucibus in ornare quam viverra orci sagittis. Mauris pharetra et ultrices neque ornare aenean euismod elementum nisi. Convallis tellus id interdum velit laoreet id donec ultrices tincidunt. Id ornare arcu odio ut sem nulla pharetra diam sit. Eros in cursus turpis massa tincidunt dui. Sit amet nisl purus in mollis nunc sed id semper.
+        </code>
+      </div>
     </main>
 
     <footer>
-      <a
-        href="https://zeit.co?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Powered by <img src="/zeit.svg" alt="ZEIT Logo" />
-      </a>
+      <p>Hi, again</p>
     </footer>
 
-    <style jsx>{`
-      .container {
-        min-height: 100vh;
-        padding: 0 0.5rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-      }
-
-      main {
-        padding: 5rem 0;
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-      }
-
-      footer {
-        width: 100%;
-        height: 100px;
-        border-top: 1px solid #eaeaea;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-
-      footer img {
-        margin-left: 0.5rem;
-      }
-
-      footer a {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-
-      a {
-        color: inherit;
-        text-decoration: none;
-      }
-
-      .title a {
-        color: #0070f3;
-        text-decoration: none;
-      }
-
-      .title a:hover,
-      .title a:focus,
-      .title a:active {
-        text-decoration: underline;
-      }
-
-      .title {
-        margin: 0;
-        line-height: 1.15;
-        font-size: 4rem;
-      }
-
-      .title,
-      .description {
-        text-align: center;
-      }
-
-      .description {
-        line-height: 1.5;
-        font-size: 1.5rem;
-      }
-
-      code {
-        background: #fafafa;
-        border-radius: 5px;
-        padding: 0.75rem;
-        font-size: 1.1rem;
-        font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
-          DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
-      }
-
-      .grid {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-wrap: wrap;
-
-        max-width: 800px;
-        margin-top: 3rem;
-      }
-
-      .card {
-        margin: 1rem;
-        flex-basis: 45%;
-        padding: 1.5rem;
-        text-align: left;
-        color: inherit;
-        text-decoration: none;
-        border: 1px solid #eaeaea;
-        border-radius: 10px;
-        transition: color 0.15s ease, border-color 0.15s ease;
-      }
-
-      .card:hover,
-      .card:focus,
-      .card:active {
-        color: #0070f3;
-        border-color: #0070f3;
-      }
-
-      .card h3 {
-        margin: 0 0 1rem 0;
-        font-size: 1.5rem;
-      }
-
-      .card p {
-        margin: 0;
-        font-size: 1.25rem;
-        line-height: 1.5;
-      }
-
-      @media (max-width: 600px) {
-        .grid {
-          width: 100%;
-          flex-direction: column;
-        }
-      }
-    `}</style>
-
-    <style jsx global>{`
-      html,
-      body {
-        padding: 0;
-        margin: 0;
-        font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-          Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-      }
-
-      * {
-        box-sizing: border-box;
-      }
-    `}</style>
   </div>
 )
 

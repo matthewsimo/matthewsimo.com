@@ -1,4 +1,6 @@
 {
-  "presets": ["next/babel"],
-  "plugins": [["classy-ui/plugin", { "autoImport": false }]]
+  "presets": [
+    "next/babel",
+    "linaria/babel"
+  ]
 }
