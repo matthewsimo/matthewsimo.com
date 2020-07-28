@@ -4,4 +4,4 @@
 
 ### matthewsimo.com
 
-NOW WITH 💯 MORE STATIC!
+~NOW WITH 💯 MORE STATIC!~
