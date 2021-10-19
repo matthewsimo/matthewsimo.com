@@ -1,0 +1,13 @@
+/**
+ * Practical Animation:
+ * 1. Fade in
+ * 2. Fade in++
+ * 3. Error Shake
+ * 4. Fade out
+ * 5. Card flip
+ */
+
+.fade {
+  opacity: 0;
+  transition: opactiy 300ms ease-in-out;
+}

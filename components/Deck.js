@@ -1,7 +1,6 @@
 import { cloneElement, useEffect, useState } from 'react';
 import { Transition } from '@headlessui/react';
-import ToggleDarkModeButton from './ToggleDarkModeButton';
-import Link from './Link';
+import Attribution from './Attribution';
 
 export default function Deck({ className = '', children, ...props }) {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -46,10 +45,7 @@ export default function Deck({ className = '', children, ...props }) {
           isCurrent: currentIndex === i
         })
       )}
-      <div className="absolute top-6 right-6 space-x-4 flex items-center">
-        <Link href="http://twitter.com/matthewsimo">@matthewsimo</Link>
-        <ToggleDarkModeButton className="hover:text-main-400 hover:drop-shadow-md transition-shadow transition-colors duration-200 ease-in-out" />
-      </div>
+      <Attribution className="absolute top-6 right-6 space-x-4 flex items-center" />
       <div className="absolute bottom-6 left-6 space-x-4 flex items-center">
         <small className="text-main-600">
           {currentIndex + 1} / {children.length}
