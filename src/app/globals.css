@@ -71,4 +71,34 @@
   .full-bleed {
     grid-column: 1 / -1;
   }
+
+  .menu-item:nth-child(1).is-current ~ .menu-indicator {
+    transform: translateX(0) translateY(0);
+    opacity: 1;
+  }
+
+  .menu-item:nth-child(2).is-current ~ .menu-indicator {
+    transform: translateX(100%) translateY(0);
+    opacity: 1;
+  }
+
+  .menu-item:nth-child(3).is-current ~ .menu-indicator {
+    transform: translateX(200%) translateY(0);
+    opacity: 1;
+  }
+
+  .menu-item:nth-child(1):hover ~ .menu-indicator {
+    transform: translateX(0) translateY(0);
+    opacity: 1;
+  }
+
+  .menu-item:nth-child(2):hover ~ .menu-indicator {
+    transform: translateX(100%) translateY(0);
+    opacity: 1;
+  }
+
+  .menu-item:nth-child(3):hover ~ .menu-indicator {
+    transform: translateX(200%) translateY(0);
+    opacity: 1;
+  }
 }

@@ -1,15 +1,6 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import { GoogleTagManager } from "@next/third-parties/google";
-import "./globals.css";
 import { backdrop } from "@/lib/class-utils";
-
-const inter = Inter({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-inter",
-  weight: "600",
-});
+import PageLayout from "@/components/page-layout";
 
 export const metadata: Metadata = {
   title: "Matthew Simo",
@@ -23,14 +14,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <head>
-        <link rel="me" href="https://mastodon.social/@matthewsimo" />
-      </head>
-      <GoogleTagManager gtmId="G-4SBJQ1ZHYZ" />
-      <body className={`${inter.variable} font-sans text-main bg-main`}>
-        <main className={backdrop}>{children}</main>
-      </body>
-    </html>
+    <PageLayout>
+      <main className={backdrop}>{children}</main>
+    </PageLayout>
   );
 }
