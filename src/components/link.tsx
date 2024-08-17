@@ -1,19 +1,29 @@
 import { anchorClass, focusClass } from "@/lib/class-utils";
 import { AnchorHTMLAttributes, PropsWithChildren } from "react";
 
-const Link = (props: PropsWithChildren<AnchorHTMLAttributes<HTMLAnchorElement>>) => {
+const Link = (
+  props: PropsWithChildren<AnchorHTMLAttributes<HTMLAnchorElement>>
+) => {
   const { href, children, className, ...rest } = props;
 
-  const allClasses = className ? `${focusClass} ${className}` : `${focusClass} ${anchorClass}`;
-  const isInternal = href && (href.startsWith('/') || href.startsWith('#') || href.startsWith('.'));
+  const allClasses = className
+    ? `${focusClass} ${className}`
+    : `${focusClass} ${anchorClass}`;
+  const isInternal =
+    href &&
+    (href.startsWith("/") || href.startsWith("#") || href.startsWith("."));
 
-  return  (
+  return (
     <a href={href} {...rest} className={`${allClasses} group`}>
       {children}
 
-      {isInternal && (
+      {!isInternal && (
         <span className="inline-block w-5 ml-[2px] align-text-bottom group-hover:motion-safe:animate-pulse">
-          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
             <path
               fillRule="evenodd"
               clipRule="evenodd"
@@ -22,7 +32,7 @@ const Link = (props: PropsWithChildren<AnchorHTMLAttributes<HTMLAnchorElement>>)
             />
             <mask
               id="mask0_0_1841"
-              style={{"maskType":"alpha"}}
+              style={{ maskType: "alpha" }}
               maskUnits="userSpaceOnUse"
               x="3"
               y="3"
@@ -43,9 +53,9 @@ const Link = (props: PropsWithChildren<AnchorHTMLAttributes<HTMLAnchorElement>>)
         </span>
       )}
     </a>
-)
-}
+  );
+};
 
-Link.displayName = 'Link';
+Link.displayName = "Link";
 
 export default Link;
