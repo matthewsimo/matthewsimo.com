@@ -2,8 +2,8 @@
 
 import { focusClass } from "@/lib/class-utils";
 import { useEffect, useState } from "react";
-import Sun from "./icons/Sun";
-import Moon from "./icons/Moon";
+import Sun from "./icons/sun";
+import Moon from "./icons/moon";
 
 const ToggleDarkModeButton = ({ className = "" }) => {
   const [mode, setMode] = useState<"dark" | "light">("light");
