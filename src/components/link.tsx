@@ -16,7 +16,7 @@ const Link = (
   return (
     <a
       href={href}
-      className={`${allClasses} group whitespace-nowrap `}
+      className={`${allClasses} text-pretty group whitespace-nowrap `}
       target={isInternal ? "_self" : `_blank`}
       {...rest}
     >
