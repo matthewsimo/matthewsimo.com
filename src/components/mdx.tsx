@@ -55,3 +55,5 @@ export function MDX(props: MDXRemoteProps) {
     </div>
   );
 }
+
+MDX.displayName = "MDX";
