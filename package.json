@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "new:draft": "plop draft"
   },
   "dependencies": {
     "@next/third-parties": "latest",
@@ -26,6 +27,7 @@
     "eslint-config-next": "14.2.5",
     "feed": "^4.2.2",
     "next-mdx-remote": "^5.0.0",
+    "plop": "^4.0.1",
     "postcss": "^8",
     "reading-time-estimator": "^1.11.0",
     "rehype-autolink-headings": "^7.1.0",
