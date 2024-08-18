@@ -14,11 +14,15 @@ const Link = (
     (href.startsWith("/") || href.startsWith("#") || href.startsWith("."));
 
   return (
-    <a href={href} {...rest} className={`${allClasses} group`}>
+    <a
+      href={href}
+      className={`${allClasses} group whitespace-nowrap `}
+      target={isInternal ? "_self" : `_blank`}
+      {...rest}
+    >
       {children}
-
       {!isInternal && (
-        <span className="inline-block w-5 ml-[2px] align-text-bottom group-hover:motion-safe:animate-pulse">
+        <span className="inline-block w-5 ml-[2px] align-middle group-hover:motion-safe:animate-pulse">
           <svg
             viewBox="0 0 24 24"
             fill="none"
