@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { anchorClass, gridClass } from "@/lib/class-utils";
 import LinkIcon from "@/components/icons/link";
 import CodeIcon from "@/components/icons/code";
@@ -95,7 +94,7 @@ export default function Projects() {
             </footer>
             {img && (
               <a href={link}>
-                <Image
+                <img
                   className="py-4"
                   src={img}
                   alt={`Screenshot of ${title}`}
