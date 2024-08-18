@@ -1,0 +1,235 @@
+---
+id: '000'
+title: 'MDX Test'
+img: 'https://images.unsplash.com/photo-1555685812-4b943f1cb0eb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3300&q=80'
+tone: 'light'
+draft: true
+---
+
+<Box />
+
+I had run into [this problem](https://github.com/system-ui/theme-ui/issues/1130) where my Theme UI theme's base styles weren't being applied to the MDX file markup. I thought it was something specific to my site's configuration so I foolishly spent too much time messing around to validate that and even did the work to upgrade from [next-mdx](https://github.com/vercel/next.js/tree/master/packages/next-mdx) to [next-mdx-enhanced](https://github.com/hashicorp/next-mdx-enhanced).
+
+I won't make any metaphors about the JS ecosystem and its packages being a house of cards or anything but it turns out that if you have multiple dependencies relying on differring versions of a shared sub depepency you might run into a _problem_. Now, I was interested in this so I did some digging. Not a ton, but there wasn't a whole lot of info into what or why that can really be a problem, aside from the obvious that npm packages totally don't have to adhere to semver. So good luck I guess.
+
+In case you aren't lucky, like me, this tip might help get you moving.
+
+Firstly, use yarn, it adds a much needed measure of deterministic behavior to your installs. [Install yarn](https://yarnpkg.com/getting-started/install).
+
+Then, you'll want to see if you have any packages dupes. If you have an inkling of the most likely offenders be sure to add the `--pattern [term]` flag, it'll limit the number of matches by the term for much easier parsing.
+
+```bash
+$ yarn list --pattern [term]
+```
+
+```js
+console.log('hi');
+console.log('test');
+console.log('three');
+```
+
+```js {1,3-4} showLineNumbers
+function fancyAlert(arg) {
+	if (arg) {
+		$.facebox({ div: '#foo' });
+	}
+}
+```
+
+Then the neat bit, yarn supports a `resolutions` key in your `package.json` file. It allows a project to selectively control depepency resolution - so if there's a mismatch for a shared depepency you can force a package that you don't control to use a specific version.
+
+The targeting is pretty flexible too, so be sure to check out the [docs](https://yarnpkg.com/configuration/manifest#resolutions).
+
+# Title 1
+
+## Title 2
+
+### Title 3
+
+#### Title 4
+
+##### Title 5
+
+Welp, I've finally done it! After 5 start & stop versions over the course of just as many years, I'm publishing a new version of my site. It's long over due but no use in wringing my hands over the delay. Onwards and upwards, as they say - eh?
+
+It's kind of funny why I decided to restart the effort. 2020 has been a real bear of a year, for loads of folks. In a world where it feels like an individual has increasingly less control, I thought it was about time I got around to finish the redesign of my site that has been in some sort of progress for a couple years now. I'd never been really motivated to set up my own soapbox, being content with "renting space" on various social media & online services. But, that mindset stops here. The idea is, gaining control over a part of your life helps offset the existential dread that 2020 is really hammering everyone with. It's the same idea with [victory gardens](https://en.wikipedia.org/wiki/Victory_garden).
+
+But, as any engineer-minded person, if anything is worth doing, it's worth over-doing. My goals for this redesign:
+
+1. Take ownership of digital footprint
+2. A place where I can experiment & catalog that exploration
+3. Hone my technical writing and share interesting techniques
+
+### Own my own content
+
+I first fell in love with the web because of stark independence of the platform. Regardless of your option on privacy and data ownership, there have been _certain_ web companies that have turned their backs on the spirit of what makes the web great. Openness, freedom, implicit connectedness. Instead, they look for any opportunity to monetize every aspect of their community's lives. In response, I want to scale back my activity on platforms that are counter to that philosophy. I'll offset that with labs and my own writing, which I'll cover more in the next two sections.
+
+### Experimentation & exploration
+
+One of my favorite parts of the technology industry is that it's always in a state of perpetual discovery. There's always something to learn, always new methods to try. I'm notorious about "closing the loop" on my little tinkerings. I've got a directory on every computer I own, `~/projects/personal` that is chock-full of little ideas. It is great for exploration -- a no pressure area to make mistakes without repercussions but it has always bugged my that it lacks a few key things.
+
+1. It's a random smattering of dead ends. They aren't organized, cataloged or even distributed across my machines. So, there's no way for one idea to coherently build upon existing learnings.
+2. They're locked up, only on my machine and in various states of consumability.
+3. They're never synthesized into articles for others to learn from and remix.
+
+Honestly, I feel I'm selling myself (and the web community) short since it's just scattered mess of experiments. I'm still thinking through my priorities and needs are, so this is an active area of development, but there will be a dedicated space on the site for this purpose. Stay tuned.
+
+### Hone my writing and give back
+
+I've never been especially good at "marketing myself". I'm hoping to make intentional improvements in this area. I'd like to leverage my personal site as a place that I can be found professionally. I've been working for nearly a decade and a half in the web/technology space but because the past few years all my work has been closed source. Which means, that isn't really explicit anywhere on the Internet currently -- I'd like to change that.
+
+The most obvious way here is to make sure I have a good [about page](/) that showcases past projects and select clients. The other way, is to write technical posts where I can share whatever cool new technique I've come across or used on a project. I'd like to mix in some non-technical articles as well, I've learned a lot leading teams and that content could be useful to some folks.
+
+### Tech Stack
+
+For now, the site is built on:
+
+- [theme-ui](https://theme-ui.com/)
+- [mdx](https://mdxjs.com/)
+- [react](https://reactjs.org/)
+- [nextjs](https://nextjs.org/)
+- [vercel](https://vercel.com/)
+- [react-spring](https://react-spring.io/)
+- [react-three-fiber](https://github.com/pmndrs/react-three-fiber)
+
+It's a humble start and is still in active development, but I'm excited to have something I can constantly refine and control. I'm a tinkerer at heart, so one thing I know I'll have to remain vigilant on is balancing my efforts on content vs. build out. I haven't decided on a cadence for publishing posts yet, but I'd like to do a few a month - we'll see how that shakes out. I've spent a lot of thought and effort to make sure the initial design of the application is as low friction as possible to deploy so publishing is dead simple. The idea is to remove or minimize any blockers that impact my willingness to deploy.
+
+One of the greatest revelations was that it's _never_ going to be done, which automatically removes the pressure for perfection. It's a work in progress, like everyone, and _that's totally ok_.
+
+That's all for now, thanks for reading - I'm exciting for what this will turn into!
+
+# Title 1
+
+## Title 2
+
+### Title 3
+
+#### Title 4
+
+##### Title 5
+
+My wife, Vy, and I had our first child on June 30th. His name is Benjamin Ender Simo and he is absolutely perfect. It's definitely been an adjustment but it's a more fulfilling time than I could have imagined.
+
+I'm super thankful that my job's paternity leave is 6 weeks. It has of course afforded me the opportunity for me and my family to adjust but it's also allowed me to reflect on the experience.
+
+The following snippets are the distillation of that month's reflection. I'm writing them down for a few reasons:
+
+1. To help me remember this time down the road and how fulfilling and satisfying of a period it was.
+2. To give me a touchstone so that these lessons persist and I don't have to re-learn them as often.
+3. I'm only a month into being a father, there is loads and loads I have yet to discover and sure, they may be obvious to some, but life experience really lets knowledge sink in. If anyone can be better equipped for their own parental journey and benefit from these then that'd be really neat too.
+
+OK, with that out of the way - in no particular order..
+
+> It is not about you anymore. And that's OK.
+
+> There are good and bad moments. They are both equally fleeting.
+
+> It is really hard, but you can do this.
+
+> There is always more (pee/poo), to assume otherwise is to invite disaster. **Do not let your guard down.**
+
+> Small, even seemingly mundane, efficiencies are favors to your future self.
+
+> Self care isn't selfish. It helps you rejuvenate yourself, and if you're at your best you can help your partner and your child better. Don't ignore it.
+
+> Newborns do 4 things; eat, make dirty diapers, sleep, and cry. Crying is like 25% of what they even know to do, so don't get discouraged by it - it's to be expected.
+
+> You are on the same team, treat everyone with as much grace as you can muster. You'll need some in the future too.
+
+> It's totally OK to ask for help.
+
+> Vy is a force of nature, you are incredibly lucky.
+
+> Sleep and the opportunity of sleep is precious. Do not squander either.
+
+> Have a plan, but hold it loosely.
+
+Alright, that's all I got - thanks for reading.
+
+And to Ben, thanks for teaching me so much in such a short time. Love you so much and I'd do anything for you. I'm looking forward to getting to know you more, be nice to your mom and dad.
+
+# Title 1
+
+## Title 2
+
+### Title 3
+
+#### Title 4
+
+##### Title 5
+
+I've been working remote since the very start of my career, nearly 15 years now. During that time, I've learned a lot about how to do that the right way and the wrong way. I want to share some tips and strategies to help everyone as the world deals with the effects of the pandemic.
+
+Before we begin it's necessary to understand _why_. The _real goal_ is to be the best version of yourself. This really applies to every "vertical" in your life, but in the context of this article it means to be the absolute best employee and the absolute best family member. This is what I've found works for me, it should go without saying but your mileage may vary (don't believe everything your read on the Internet!). It should also be mentioned that there are always exceptions to the rule and use your best judgment if a period of time at home or work demand special handling.
+
+If you like lists, like I like lists, here's the short version.
+
+- [Set expectations](#set-expectations)
+- [Set timers/reminders](#set-timersreminders--schedule-personal-time)
+- [Create dedicated work space](#create-dedicated-work-space)
+- [Don't forget to commute](#dont-forget-to-commute)
+
+### Set expectations
+
+Every relationship has expectations and ultimately the success of a relationship is based solely on each member meeting the other's expectations. As a result, it's _critical_ for all parties to be on the same page about those expectations. If you can, do this as early as possible. It'll be easier, but through clear and intentional communication you can refocus.
+
+##### With your family
+
+Something that helped me is to make it clear to your family and friends that when you're at work, you're "at work". If they have trouble understanding try to re-frame it to if you worked at an office, would it be alright if they dropped in and interrupted whatever meeting or task you were in the middle of to ask if you'd seen their shoes/phone/keys?
+
+If they _do_ need you, have them call - you can answer and help if you are available. The dedicated work space will also help in this regard, read on for how and why.
+
+##### With your employer & clients
+
+Really the only thing you need to make sure is clear, is that just because you work where you live, doesn't mean that you're _always at work_ - it's in their best interest (and yours) to promote good work/life balance.
+
+This is just your responsibility as theirs. It's your choice to answer that after hours email. Your choice to _even check your email after hours in the first place_.
+
+### Set timers/reminders & schedule personal time
+
+I'm notorious for getting in a groove and losing track of time. These flow states are wonderful for productivity but, if not guarded against, can set you up to be out of balance.
+
+When you work a traditional office job you inherently have something to do at 5pm, get in your car/public transit and travel home. If you aren't _intentional_ about your time, you'll sit at your desk and do less-than-productive work.
+
+If you're missing out on time with your family or for self care and not doing the very best work you can, why would you choose that situation versus any of the alternatives?
+
+To make that question a no-brainer, you need to be intentional about those _alternatives_. They can be anything. Invest in yourself, your relationships - it doesn't matter. As long as your intentional about it, it will help to enrich your life. It'll make your time at work more focused and productive because you know that at 5pm you've got to give the dog a walk. Or hit the gym. Or watch/read/play your favorite show/book/game. Or play with your kids. Or get drinks with your friends. Humans are multifaceted and if we don't polish all our sides we won't shine as bright.
+
+The end of day bell isn't the only thing you should be concerned with either though. Sure, you don't have the traditional "water cooler chat" but these small breaks make sure that you stay fresh and take care of yourself. I've found that for myself tracking water intake, stretching or short 5 min body weight exercise breaks really contribute to better sleep, less back pain and overall a more positive attitude.
+
+### Create dedicated work space
+
+Took me a bit to really get this but I think it is super helpful. It helps your set expectations with your family and yourself. If you're working from the living room couch, gonna be real easy for you to get distracted.
+
+But it isn't just about maintaining focus. By having a specific place in your home where you "do work", you send a signal to your brain and your family that you _have left and are at work_. And, when you leave that place, you tell yourself and them that you are back home.
+
+The benefit for your family is obvious but the signal you send yourself shouldn't be discounted. You're more apt to be able to leave the concerns and stressors of work _at work_.
+
+### Don't forget to commute
+
+Humans are creatures of habit. We can leverage this truth to our advantage to help us smoothly make the transition from work to life or life to work in the most efficient manner possible.
+
+My home office is upstairs, and when I say "commute", I mean more than just "walk up the stairs". Morning, lunch, and end of day rituals help your brain transition from one state to another.
+
+It doesn't matter much what your ritual is really. For example, my morning ritual consists of these actions in this order:
+
+1. Get out of bed
+2. Bathroom stuff
+3. [Make coffee "the long way"](https://www.stumptowncoffee.com/brew-guides/v60) & eat breakfast
+4. Fill my water container for the day
+5. Walk upstairs and stretch before sitting down to sign in to all the things and checking my daily item list
+
+And when ending my work day, I do this:
+
+1. Think about the work day and make my 3 item bullet list for the next work day
+2. Check personal email
+3. Read one of the articles I've inevitably found and saved in one of my device's browser tabs
+4. Head downstairs and ask my wife how her day was
+
+The point is that it can be simple or mundane, in fact, it _should_ be simple. It lets your brain go on autopilot and do garbage collection on one mode as you move to the next. It doesn't have to be fixed either, for example, in the hotter months, I augment my morning ritual by walking my dog. In the cooler months, this happens after work or after dinner.
+
+They can grow and shrink to accommodate your goals too. We just had our first child so I'm looking forward to adding spending time with my son every day after work. And since I've started this blog over my paternity, I'm also planning on seeing which ritual it is the best fit to add 15-20 minutes of time to work on an article, a lab, or some technical feature.
+
+### Good Luck
+
+I hope that at least some of these help some folks adjust to our new reality. Again, look at these as a guideline - a place for you to explore and find what works for you and your situation. Be safe - work and love hard!

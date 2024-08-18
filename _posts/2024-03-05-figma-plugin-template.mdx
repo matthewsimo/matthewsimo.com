@@ -1,0 +1,92 @@
+---
+id: '021'
+title: 'Tools to build tools: Figma Plugin Template'
+img: 'https://images.unsplash.com/photo-1530124566582-a618bc2615dc?q&#x3D;80&amp;w&#x3D;2670&amp;auto&#x3D;format&amp;fit&#x3D;crop&amp;ixlib&#x3D;rb-4.0.3&amp;ixid&#x3D;M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+imgAttribution: 'Photo by <a href="https://unsplash.com/@neonbrand?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Kenny Eliason</a> on <a href="https://unsplash.com/photos/selective-focus-photography-of-mechanics-tool-lot-60krlMMeWxU?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>'
+---
+
+
+Last week I released a new Figma Plugin [Node Vars](https://www.figma.com/community/plugin/1345121556751264927/node-vars) and wanted to write a bit about the architecture of Figma Plugins and Node Vars. Then, I'll review the template project I built to quickly build Figma Plugins. Its primary aim is to help remove the project setup and boilerplate so you can get to exploring your idea as fast as possible.
+
+## Figma Plugins
+
+For the most part, the Figma Plugin docs are great. If you have an idea you are interested in building, this page is required reading: [How Plugins Run](https://www.figma.com/plugin-docs/how-plugins-run/).
+
+![how plugins run](https://static.figma.com/uploads/04c4c6293fce2a7fe67bccd385ee5ab998705780)
+
+If you have any exposure to [Electron apps](https://www.electronjs.org), you'll find it familiar. In a nutshell, there are two processes involved.
+
+1. The NodeJS process that is in charge of managing the plugin and communicating with the host environment, in this case Figma.
+2. The optional sandboxed UI that your plugin can tell Figma to show when it wants. Note: this code does not have direct access to the Figma API and has to communicate with your plugin's NodeJS process via [message passing](https://www.figma.com/plugin-docs/api/properties/figma-ui-postmessage/).
+
+## Node Vars Architecture
+
+Node Vars is pretty simple tech wise, it essentially adds an event listener to the selection event Figma provides and tells the UI what the relevant variables to display given what nodes are currently selected.
+
+It's made up basically just three main parts, with no real curve balls:
+
+1. Data modeling layer
+2. UI layer
+3. Interface layer
+
+![Node Vars Arch Diagram](/img/node-vars-arch-diagram.png)
+
+What does each of these layers actually do in the case of Node Vars?
+
+### 1. Data modeling layer
+
+This layer handles managing data on plugin startup and over the course of its lifecycle. It does things like show the UI, registers event listeners with the appropriate events, get & store settings, and collects & normalizes data from the API that the plugin needs.
+
+### 2. UI Layer
+
+The UI layer is, you guessed it, in charge of rendering the UI that the user interacts with within the Figma Application. In this case, I'm using React as the UI technology here but you could use anything (or nothing!) you wanted. The UI needs to manage state, handle input, and both send & respond to messages to/from the data layer. Using [tailwind](https://tailwindcss.com) to style the UI, and [shadcn/ui](https://ui.shadcn.com) for some nice looking implimentation of (mostly [Radix](https://www.radix-ui.com/primitives)) primitive components &mdash; nothing too crazy here.
+
+### 3. Interface Layer
+
+Honestly, the "Interface Layer" is probably a poor name... But it is just the bits of code that helps the two layers communicate or.. _interface_. It's mostly types and a couple utilities so that the Data & UI layers are strictly forced to agree on what messages they are sending/expecting.
+
+The neat thing is that this approach should work for most (maybe all?) Figma Plugins.
+
+## Figma Plugin Template
+
+Which leads us to the [starter template](https://github.com/matthewsimo/figma-plugin-template). Since this general architecture should scale regardless of the actual functionality of the plugin there's a bunch of plumbing we can get out of the way.
+
+Also, due to some constraints that Figma enforces on plugins there are some project structure and build tools it'll be nice to handle as well.
+
+### Structure
+
+Since I could see many/most plugins wanting a marketing focused landing page as well. I opted to make a monorepo with two packages.
+
+1. `/plugin` - where the plugin code lives
+2. `/web` - where the website code lives
+
+For our purposes here, we'll focus on the plugin package. The web is just a vite react app scaffold but can be swapped out depending on whatever your needs are trivially.
+
+### Build tools
+
+I'm using `bun` as the package manager, since it's super fast and has baked in TS support.
+
+I wish I could use it to actually bundle my code but I didn't want to dig into writing a custom bundler plugin and already had great success with using Vite for similar needs. I will say however, that so far I'm loving bun and might look at this most closely later so I can simplify the dependencies.
+
+OK, so since the plugin is kind of two separate processes, they need to be bundled separately too... And what's more, Figma wants only a single `.js` file for the main process and a single `.html` file for the UI. Not a big deal for the [main code build config](https://github.com/matthewsimo/figma-plugin-template/blob/main/packages/plugin/vite.config.code.ts). However, for the [ui code build config](https://github.com/matthewsimo/figma-plugin-template/blob/main/packages/plugin/vite.config.ui.ts) it means we need to take advantage of `vite-plugin-singlefile` package that will force Vite not to do any fancy splitting or bundling which it does by default.
+
+
+I'm leveraging [`concurrently`](https://www.npmjs.com/package/concurrently) to run the build for the code with the appropriate config simultaneously anytime something in `./src` changes. Bun's speed really shines here - it's nearly instant and is a lovely DX.
+
+
+### Utils/base functionality
+
+Here's a smattering of utils and base features that will come in handy:
+
+- [main process message handling](https://github.com/matthewsimo/figma-plugin-template/blob/eb2e9e7ddfb26672cc71f28bd9fad4ab1a385f61/packages/plugin/src/code.ts#L17-L38): Code to explicitely handle all message types and their payloads, as defined in the post message utility.
+- [settings](https://github.com/matthewsimo/figma-plugin-template/blob/eb2e9e7ddfb26672cc71f28bd9fad4ab1a385f61/packages/plugin/src/common/app.ts#L5-L35): Types, get, and set utils.
+- [post messages](https://github.com/matthewsimo/figma-plugin-template/blob/eb2e9e7ddfb26672cc71f28bd9fad4ab1a385f61/packages/plugin/src/common/msg.ts): Strong types for each type of message and the required payload for each. As well as util functions for each process to easily emit these.
+- [ui entry point](https://github.com/matthewsimo/figma-plugin-template/blob/eb2e9e7ddfb26672cc71f28bd9fad4ab1a385f61/packages/plugin/src/App.tsx): sets up message handling and consuming global UI state.
+- [ui app context](https://github.com/matthewsimo/figma-plugin-template/blob/eb2e9e7ddfb26672cc71f28bd9fad4ab1a385f61/packages/plugin/src/AppContext.tsx): sets up a global state store, reducer, and actions for the UI. Store is type safe and relies on the same types defined in post message utility.
+
+
+Anyways, I thought it was neat so I wanted to share. I'm going to continue to iterate on this as I explore and build more plugins. It's actually a lot of fun!
+
+ If you find this helpful or have any questions/issues just reach out or [post an issue](https://github.com/matthewsimo/figma-plugin-template/issues/new) - would love any and all feedback.
+
+

@@ -1,0 +1,87 @@
+---
+id: '022'
+title: 'My favorite Apple Shortcuts'
+img: 'https://images.unsplash.com/photo-1526920929362-5b26677c148c?q=80&w=2676&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+imgAttribution: 'Photo by <a href="https://unsplash.com/@nosoylasonia?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Juan Gomez</a> on <a href="https://unsplash.com/photos/white-orange-green-and-purple-computer-keyboard-kt-wA0GDFq8?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>'
+---
+
+
+Apple announced <Link href="https://en.wikipedia.org/wiki/Shortcuts_(Apple)">Shortcuts</Link> at WWDC 2018 for iOS and then announced macOS support at WWDC 2021. In a nutshell, it is a visual scripting workflow tool that lets you augment your apps and OS. I think it's flown under most people's radar and think that's a shame. In this post, I'll share a few of my most-used shortcuts I've made to help automate some common tasks. Maybe they'll be helpful or inspire you to make some of your own.
+
+But first, an overview of Shortcuts to help orient folks that have no exposure.
+
+- A *shortcut* is comprised of one or more *actions*.
+- An *action* is a bit of functionality that either an application exposes to shortcuts (i.e., Finder exposes getting the files from a directory) or some basic logic that all shortcuts can utilize (i.e., Getting/setting variables, basic math, string concatenation, etc.).
+- *Shortcuts* have some way they're triggered that you can configure. These are dependent on the device that you're using when you want to trigger but some options are: Add to Home Screen, Show in share sheet, Use as a Quick Action, etc., which means that shortcut would be available for the appropriate devices.
+
+
+<p className="pb-12">If that's still foggy, don't worry, we'll see some examples soon.</p>
+
+# Primary Benefits
+
+Of course, if you're doing any kind of real automation, you might want to use real scripting to satisfy your needs. The thing is though, that if you're deep in the Apple ecosystem and have an iPhone, MacBook, Watch, etc., having these with you on any device is an upside that can't be understated.
+
+## Top Five
+
+These may be mundane, but these are in my top five because I interact with them so frequently, they save me a bunch of tedium, or I think they are neat.
+
+Note: The shortcuts I'm sharing may require tweaking to work for you as your apps or directories may be different and I'm sharing an edited version to not leak privacy details so are missing recipient info in certain cases.
+
+Anyways, here they are: `<drum-roll />`
+
+### Five: Work Day Start/End
+
+These two are super simple, and even though they aren't mind-blowing, they save time, and that makes them worthwhile. The start shortcut only makes use of the “Open App” action, and the end shortcut uses the “Quit App”. They live in the menu bar and open or close all the apps you've defined.
+
+- <Link href="https://www.icloud.com/shortcuts/8e6707ffbacd4db5b8752a87c13aca46">Work day start</Link>
+- <Link href="https://www.icloud.com/shortcuts/58970d045e924b2ba933b5806dfe9211">Work day end</Link>
+
+### Four: Prep Import for Synology Backup
+
+I'm a hobbyist photographer and I have two kids 3 & under, so needless to say, I take a lot of photos. I shoot Sony and have a Synology NAS. I like to import to the Photos app and backup to the NAS. Unfortunately, the Synology backup app kinda sucks dealing with RAW files. So I've got my camera saving as RAW+JPEG, this is fine but it's kind of a pain to select only the JPEGs so I can backup then import and have the Photos app delete the imported files from the SD Card after. This helps turns a tedious process into just a couple of clicks.
+
+I've got this one set to run as a Quick Action from Finder. You just need to right-click on a directory on the SD Card and then choose the shortcut from the quick action option. The shortcut gets the contents of the current directory, filters out everything except the `.JPG` files, and counts the number of files. Then, the shortcut lets you pick the directory where it should save them. When it finishes, it'll show an alert saying it completed saving XX number of files. If I'm on a reliable network, I'll navigate to the proper place on my NAS, if not, I'll just save them out locally for handling later. While those upload, I'll have the Photos app run its import (with the “Delete after imported” option selected).
+
+I'd love to simplify this even further but the Photos app doesn't provide an Import action and I haven't figured out how to dynamically create the path for where the files should be saved to on the NAS that is connected via `smb`. Even so, it saves a lot of time and makes it where I don't have to manually (and accurately) click around a bunch.
+
+- <Link href="https://www.icloud.com/shortcuts/c864efe1859e44febeed71e900e99cf6">Prep imports for Synology</Link>
+
+### Three: Send to Frames
+
+Our family bought a trio of Skylight | Skylight Frame - Digital Photo Frame; one for each grandparents and one for our home. They're pretty neat. If you're unfamiliar, it's a digital frame that anyone can share photos to, if you know the associated email.
+
+I found I wasn't using it as often as I wanted. You have to send an email, which is easy enough, but it was hard to take time in the moment of reviewing photos or to remember to back later. I also found myself forgetting which frame I'd sent which file, which resulted in photos not making it to certain frames. So, I made this shortcut to solve this for me.
+
+This one is triggered from the Share Sheet. I've rigged it up to only accept “Images and Media”, so it is only available if you're triggering from that type of file. Then it sends an email to all three frame emails with the image as an attachment. Simple and most importantly fast!
+
+- <Link href="https://www.icloud.com/shortcuts/93906c11fde04e5e800e4ddfdd880e53">Send to Frames</Link>
+
+### Two: Freeze Warning
+
+I live in Texas, and it's mostly brutally hot, but sometimes a cold front comes in fast and it will be suddenly freezing. Like 50º swings in 24 hours fast. It'd be nice if I could get a notification if it'll be below freezing in the next 24 hours so that I can make any preparations.
+
+So I made a shortcut that helps with that. It starts by setting a variable to 0, then gets the hourly forecast for the next 24 hours, loops through each and if any of those forecast temperatures are less than or equal to 32ºF it'll send a notification.
+
+The logic itself is simple, but Shortcuts has a feature that we haven't talked about yet called “Automations”. It lets you run a shortcut (or control some Home device) when some event or trigger happens (time of day, arriving somewhere, starting a workout, joining a specific Wifi network, loads of stuff..). For the purposes of this though, I just have it run at 5:30 pm every day. If it isn't going to freeze, nothing happens, it runs and silently completes. But if it does detect a freeze, it'll send me a notification so that I can know to act.
+
+- <Link href="https://www.icloud.com/shortcuts/05bad6d73384413c8cadaa6887e8bce7">Freeze Warning Notification</Link>
+
+### One: OMW
+
+This last one is just super convenient. It does 3 things basically.
+
+1. Get the driving time from my current location to home
+2. Send a text to my wife that I'm on the way home with the ETA
+3. And then it starts driving directions
+
+I have it set to trigger from my watch as a complication. Again, nothing mind-blowing here but when you're out and about running errands, potentially have a screaming kid or your hands full of groceries it can be really helpful.
+
+- <Link href="https://www.icloud.com/shortcuts/c4d38e3f85c7461a9f7318cb1ee8c306">OMW</Link>
+
+
+## Wrapping up
+
+Maybe these shortcuts are of marginal benefit, and only for a “lazy person”. You're probably right, but they're fun to play with and remove micro-frictions from my day to day. Even if these specific shortcuts don't help you, maybe they'll give you an idea that will.
+
+
+I've really just started playing around with them in the last ~6 months or so and really have barely scratched the surface of what is possible. Have any shortcuts you have that you find useful? I'd love to hear about them - [email me](mailto:hi@matthewsimo.com)!
