@@ -11,6 +11,8 @@ import Heading, { type HeadingProps } from "./heading";
 import { ComponentProps, DetailedHTMLProps, HTMLAttributes } from "react";
 import BestOf from "./best-of";
 
+/* eslint-disable react/display-name */
+
 type MDXHeadingProps = DetailedHTMLProps<
   HTMLAttributes<HTMLHeadingElement>,
   HTMLHeadingElement

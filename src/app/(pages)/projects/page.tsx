@@ -2,6 +2,8 @@ import { anchorClass, gridClass } from "@/lib/class-utils";
 import LinkIcon from "@/components/icons/link";
 import CodeIcon from "@/components/icons/code";
 
+/* eslint-disable @next/next/no-img-element */
+
 const projects = [
   {
     title: "Node Vars Figma Plugin",
