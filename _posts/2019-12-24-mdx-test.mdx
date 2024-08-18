@@ -6,13 +6,6 @@ tone: 'light'
 draft: true
 ---
 
-<script>
-  import Box from '$lib/Box.svelte'
-  let number = 45;
-</script>
-
-{ number }
-
 <Box />
 
 I had run into [this problem](https://github.com/system-ui/theme-ui/issues/1130) where my Theme UI theme's base styles weren't being applied to the MDX file markup. I thought it was something specific to my site's configuration so I foolishly spent too much time messing around to validate that and even did the work to upgrade from [next-mdx](https://github.com/vercel/next.js/tree/master/packages/next-mdx) to [next-mdx-enhanced](https://github.com/hashicorp/next-mdx-enhanced).

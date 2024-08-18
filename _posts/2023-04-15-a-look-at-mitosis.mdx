@@ -5,10 +5,6 @@ img: 'https://images.unsplash.com/photo-1624544056688-88e214935bc2?ixlib=rb-4.0.
 imgAttribution: 'Photo by <a href="https://unsplash.com/@flyd2069?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">FLY:D</a> on <a href="https://unsplash.com/photos/NFtyWc2NSTA?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>'
 ---
 
-<script>
-  import Link from '$lib/Link.svelte'
-</script>
-
 Recently at work, I had a bit of downtime and took the opportunity to investigate [Mitosis](https://github.com/builderio/mitosis). In this post, I'll quickly break down what it is, who is building it, and my thoughts after a week or so of tinkering. Let's dive in.
 
 ### What is it
@@ -17,7 +13,7 @@ In their own words:
 
 > Write components once, compile to every framework
 
-![Mitosis logo](/assets/img/mitosis.png)
+![Mitosis logo](/img/mitosis.png)
 
 Which, to say the least, is _very ambitious_. Instead of being a new frontend framework entry into the JS ecosystem, they are taking a different tactic and aiming to be a toolchain that enables the ability to write a component once and compile it into whatever frontend framework compile target you choose.
 
@@ -27,7 +23,7 @@ They achieve this by providing a few things:
 2. A "mitosis [IR](https://en.wikipedia.org/wiki/Intermediate_representation 'Intermediate representation')" - This is a JSON AST that mitosis uses for compiling.
 3. Command line tooling that will take all your `1`, transform it to `2`, then compile it to all the targets you define in your `mitosis.config.js` file
 
-![Mitosis high level flow](/assets/img/mitosis-flow.png)
+![Mitosis high level flow](/img/mitosis-flow.png)
 
 They have a neat [mitosis fiddle like tool](https://mitosis.builder.io/) you can play with and kick the tires.
 

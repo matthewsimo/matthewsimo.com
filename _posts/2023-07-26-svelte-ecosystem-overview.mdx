@@ -5,13 +5,9 @@ img: 'https://images.unsplash.com/photo-1515446134809-993c501ca304?ixlib=rb-4.0.
 imgAttribution: 'Photo by <a href="https://unsplash.com/@theforestbirds?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Joel & Jasmin Førestbird</a> on <a href="https://unsplash.com/images/nature/tree?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>'
 ---
 
-<script>
-  import Link from '$lib/Link.svelte'
-</script>
-
 You may be like me, your day job projects are 100% react based but you're interested in how the other frontend solutions are out there have evolved and what their tradeoffs might be.
 
-![Svelte Machine](/assets/img/svelte-machine.png)
+![Svelte Machine](/img/svelte-machine.png)
 
 I've spent time researching and analyzing, I hope this post can help you quickly digest what the svelte ecosystem provides.
 
@@ -23,7 +19,7 @@ At first glance, based solely on the numbers, it might seem like the react ecosy
 
 I like to think of ecosystems in a tiered manner, kinda like nesting dolls.
 
-![Ecosystem Diagram](/assets/img/ecosystem-diagram.png)
+![Ecosystem Diagram](/img/ecosystem-diagram.png)
 
 It's pretty hard to search npm without tripping over a package focused on react. Literally, there's [105335 packages found](https://www.npmjs.com/search?q=keywords:react). A similar search for svelte is only 7279. How can that be? I thought this was the (2nd) most loved frontend framework after all?!?
 
@@ -85,9 +81,9 @@ It's pretty neat that you can hack on the [svelte compiler](https://svelte.dev/d
 
 The compiler's job is to make sure as little code is delivered to the user as possible. It is really good at it's job. While benchmarks aren't always a perfect signal, or the only metric to consider, [take a look](https://krausest.github.io/js-framework-benchmark/2023/table_chrome_115.0.5790.98.html).
 
-![Duration Benchmarks](/assets/img/benchmarks-duration.png)
-![Startup Benchmarks](/assets/img/benchmarks-startup.png)
-![Memory Allocated Benchmarks](/assets/img/benchmarks-memory.png)
+![Duration Benchmarks](/img/benchmarks-duration.png)
+![Startup Benchmarks](/img/benchmarks-startup.png)
+![Memory Allocated Benchmarks](/img/benchmarks-memory.png)
 
 ## That's it?
 
@@ -146,13 +142,13 @@ So, yes, the svelte ecosystem sounds really robust and comprehensive. But you mi
 
 Unfortunately, the answer is complicated. Short answer, "maybe"? Longer answer, "it almost certainly doesn't matter". Let me explain, yes, there _may be_ a direct replacement either provided directly by the core team or from the active Svelte community. But even if there isn't, if you're coming from the larger, more broadly used framework, odds are it actually looks like this:
 
-![Integration Sandwich](/assets/img/integration-sandwich.png)
+![Integration Sandwich](/img/integration-sandwich.png)
 
 Thankfully, due to the architectural choices and philosophy of not straying from the web platform too much, the core team makes using native JS packages trivial. There is no wrapper necessary. If you want it to support the reactivity feature of svelte, it is trivial to import it into a svelte store and use it directly too.
 
 All this means that the ecosystem diagram from earlier in this post actually looks like this:
 
-![Ecosystem Diagram Expanded](/assets/img/ecosystem-diagram-expanded.png)
+![Ecosystem Diagram Expanded](/img/ecosystem-diagram-expanded.png)
 
 Personally, I think the web _needs_ the Svelte ecosystem. It is driving things forward in really interesting and positive ways. Definitely recommend that you give it a deep dive sometime - it is really a joy to prototype and use.
 
