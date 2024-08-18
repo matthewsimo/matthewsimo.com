@@ -30,11 +30,12 @@ const components: ComponentProps<typeof MDXProvider>["components"] = {
 };
 
 export function MDX(props: MDXRemoteProps) {
-  console.log({ props });
   return (
-    <MDXRemote
-      {...props}
-      components={{ ...components, ...(props.components || {}) }}
-    />
+    <div className="prose line-numbers">
+      <MDXRemote
+        {...props}
+        components={{ ...components, ...(props.components || {}) }}
+      />
+    </div>
   );
 }

@@ -24,6 +24,7 @@
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "14.2.5",
+    "feed": "^4.2.2",
     "next-mdx-remote": "^5.0.0",
     "postcss": "^8",
     "reading-time-estimator": "^1.11.0",
