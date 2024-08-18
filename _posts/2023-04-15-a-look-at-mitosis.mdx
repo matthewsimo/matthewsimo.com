@@ -1,0 +1,95 @@
+---
+id: '013'
+title: 'A Look At Mitosis'
+img: 'https://images.unsplash.com/photo-1624544056688-88e214935bc2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&q=80'
+imgAttribution: 'Photo by <a href="https://unsplash.com/@flyd2069?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">FLY:D</a> on <a href="https://unsplash.com/photos/NFtyWc2NSTA?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>'
+---
+
+<script>
+  import Link from '$lib/Link.svelte'
+</script>
+
+Recently at work, I had a bit of downtime and took the opportunity to investigate [Mitosis](https://github.com/builderio/mitosis). In this post, I'll quickly break down what it is, who is building it, and my thoughts after a week or so of tinkering. Let's dive in.
+
+### What is it
+
+In their own words:
+
+> Write components once, compile to every framework
+
+![Mitosis logo](/assets/img/mitosis.png)
+
+Which, to say the least, is _very ambitious_. Instead of being a new frontend framework entry into the JS ecosystem, they are taking a different tactic and aiming to be a toolchain that enables the ability to write a component once and compile it into whatever frontend framework compile target you choose.
+
+They achieve this by providing a few things:
+
+1. A JSX syntax that defines mitosis components
+2. A "mitosis [IR](https://en.wikipedia.org/wiki/Intermediate_representation 'Intermediate representation')" - This is a JSON AST that mitosis uses for compiling.
+3. Command line tooling that will take all your `1`, transform it to `2`, then compile it to all the targets you define in your `mitosis.config.js` file
+
+![Mitosis high level flow](/assets/img/mitosis-flow.png)
+
+They have a neat [mitosis fiddle like tool](https://mitosis.builder.io/) you can play with and kick the tires.
+
+### Who is building it
+
+The folks over at [Builder.io](https://www.builder.io/)'s main product is a "visual headless CMS", which is the only other mitosis frontend aside from the JSX syntax.
+
+The team at builder.io is very talented and capable. The are also behind the great open source tools [partytown](https://github.com/BuilderIO/partytown) and [qwik](https://github.com/BuilderIO/qwik).
+
+### Why, though?
+
+_This is the interesting question_.
+
+Since builderio is a visual headless CMS that works with your codebase it needs to be framework agnostic. They provide out of the box componentry that doesn't force their users to adopt any specific technology by using mitosis, so it is solve an obvious problem for them.
+
+However, this is a pretty niche usecase and probably not super relevant to most folks. In my day job, I work with a lot of large organizations that often have a very diverse internal technology landscape with globally distributed development teams. For that specific target audience there are two obvious usecases that are clearly high-value.
+
+##### Ensuring Brand Unity
+
+Maintaining a robust design system is already a difficult task. When you throw in the changing landscape of frontend technologies and legacy applications that need to be maintain it is a real miracle anything works at all.
+
+Developers don't like working on legacy applications but if they still provide real value to the orgs they need to be maintained. Even if their frontend tech is older or doesn't align with new technology practices the organization has adopted and tried to standardize. Those sorts of efforts take a very long time, and once everything is consistantly implemented across the application portfolio it is time to modernize again...
+
+Also, a lot of times they just may not have the bandwidth internally to support a new project. Instead of stagnating or letting competitors get ahead, product owners will go to outside vendors. It's very unlikely consultants are fully aligned with or even have insight into the long term technology trajectory that the organization at large is pursuing.
+
+I think mitosis is well suited to help solve these problems.
+
+##### Expanding Supported Platforms
+
+The Web is a ubiquitous platform but there are a lot of users in mobile and emerging device form factors. It is a large investment of time and resources to reimlement an organization's design system and component library to entirely new non-web technologies. Furthermore, an org might not have the capability or have the opportunity to change their internal structure to add dev teams dedicated to these platforms.
+
+While it would still be necessary to get staff to oversee and maintain projects for these platforms, mitosis would help mitigate the necessary investment by helping accellerate those development teams.
+
+There are definitely other scenarios where mitosis would help solve difficult problems and these listed here aren't the limit, just what I see as most valuable for the specific scenarios I often find myself in.
+
+### My opinion on how & where to use Mitosis
+
+Firstly, I want to call out that I think it is a super ambitious and complex project that has a ton of really compelling cases. In the short time that I've gotten to spend evaluating it there are a few pros that stood out that I think are worth highlighting.
+
+1. Very active development
+2. Really friendly interactions on github issues & their dedicated discord channels.
+3. The devs & community are very helpful in these channels. For instance, on issues, people provide as much info as posisble to try and help get people involved to contribute back to the project.
+4. I personally feel helping mitigate the fractured landscape of the JS ecosystem system is a worthwhile pursuit
+
+Unfortunately, there are some things that are less than great that should be kept in mind before adopting.
+
+1. The obvious negative tradeoff of super ambitious projects is that they will have a complex surface area.
+2. The main beneficiaries of this tool are going to be less equipped or familiar with compilers conceptually, and thus how they are built or their needs. This could make it difficult to get the number of active contributors necessary to make all the compile targets equally robust.
+3. Currently, documentation is passable but there is a large opportunity to make the project more aproachable by enhancing both clarity and coverage of their documentation.
+4. At the moment, it is difficult to see the uniformity or completeness of the IR to compiled output for targets or how it matches that target's specific "semantic nuances".
+5. Right now, and maybe even long term, I think it's best suited for atoms, molecules, & some organisms. Platform constraints and device UX paradigms/expectations are different enough that I wouldn't advise anything beyond that. Anything that has highly coupled application or business logic is not a good fit and should probably be the concern of the consuming application in my opinion.
+
+In summary, I think it is a project with a lot of merit that may not be immediately useful for all situations or mass adoption quite yet but it is definitely worth watching. However, if you're starting a fresh design system & component libray for consumers tied to various frontend technologies you should investigate if their current support for your specific targets will meet your requirements.
+
+### My unsolicited advice on the best next steps for the Mitosis team
+
+Disclaimer: It's a complicated project and I don't have any insight into their priority, roadmap, or long term plans. But here are some strategic things that I think are low hanging fruit that if done well would really help encourage adoption.
+
+1. Stardize and document the mitosis IR, different libs could have subtle difference in some underlying semantics and this would help to at least identify those differences
+2. Collaborate with library/framework authors and get buy in so that the source of truth owns the code that mitosis uses to turn the IR into the compiled output for that specific library/framework.
+3. Create a "npm create template" that folks can use to really quickly start to play with mitosis
+
+_The content of this post is also in a presentation format for <Link href="https://www.meetup.com/js-chi/events/288515502/">a talk</Link> I'm doing for the <Link href="https://www.meetup.com/js-chi/">Chicago JavaScript Meetup Group</Link>._
+
+_You can view the slides over <Link href="/talks/exploring-mitosis">here</Link>._

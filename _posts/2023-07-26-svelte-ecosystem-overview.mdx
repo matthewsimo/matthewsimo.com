@@ -1,0 +1,159 @@
+---
+id: '015'
+title: 'Svelte Ecosystem Overview'
+img: 'https://images.unsplash.com/photo-1515446134809-993c501ca304?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80'
+imgAttribution: 'Photo by <a href="https://unsplash.com/@theforestbirds?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Joel & Jasmin Førestbird</a> on <a href="https://unsplash.com/images/nature/tree?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>'
+---
+
+<script>
+  import Link from '$lib/Link.svelte'
+</script>
+
+You may be like me, your day job projects are 100% react based but you're interested in how the other frontend solutions are out there have evolved and what their tradeoffs might be.
+
+![Svelte Machine](/assets/img/svelte-machine.png)
+
+I've spent time researching and analyzing, I hope this post can help you quickly digest what the svelte ecosystem provides.
+
+At first glance, based solely on the numbers, it might seem like the react ecosystem is far superior. There is an overwhelming number of npm packages, it's stewarded by a big tech company, and seems like it's the obvious choice. But let's dig in, I was surprised at the depth I found.
+
+## On ecosystems
+
+![Nesting dolls](https://images.unsplash.com/photo-1598811629267-faffa0027fe4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1280&q=80)
+
+I like to think of ecosystems in a tiered manner, kinda like nesting dolls.
+
+![Ecosystem Diagram](/assets/img/ecosystem-diagram.png)
+
+It's pretty hard to search npm without tripping over a package focused on react. Literally, there's [105335 packages found](https://www.npmjs.com/search?q=keywords:react). A similar search for svelte is only 7279. How can that be? I thought this was the (2nd) most loved frontend framework after all?!?
+
+Some people look at this stat and stop their research. Unfortunately, it is really misleading... One key thing to keep in mind is that react, from it's inception, has always tried to call itself a "library not a framework". In another way, react _needs_ the community to provide an application state management library every week because the core team has intentionally made it not their problem or concern.
+
+Let's take a closer look at what svelte provides out of the box and get an idea of what the core team think a frontend framework should be concerned with delightful web experiences.
+
+## What's in the box?
+
+For this section, we'll be talking about what the _core team thinks is important and delivers_ as first class pieces of the ecosystem. Unsurprisingly, I'll mostly be enumerating and linking to the svelte documentation, which is fantastic - I highly encourage a comprehensive close look.
+
+### Templates
+
+- [Svelte Components](https://svelte.dev/docs/svelte-components)
+- [Basic markup](https://svelte.dev/docs/basic-markup)
+- [Logic Blocks](https://svelte.dev/docs/logic-blocks)
+- [Special Tags](https://svelte.dev/docs/special-tags)
+- [Element Directives](https://svelte.dev/docs/element-directives)
+- [Component Directives](https://svelte.dev/docs/component-directives)
+- [Special Elements](https://svelte.dev/docs/special-elements)
+
+One thing worth mentioning about Svelte Templates is that they use a `.svelte` extension for the file type. This is important so as to not try and pass anything off they do in the pre-compile step as standard JS. Other frameworks don't necessarily share this perspective. While subtle, this effects language semantics and could impact learning for newcomers or if you try to contribute to a project with some nutty build processes.
+
+### Runtime
+
+The runtime APIs are JS modules that provide functionality to your components while your application is running in the browser.
+
+#### [Basic Component Lifecycle](https://svelte.dev/docs/svelte)
+
+All the typical functions to do something within the render lifecycle of a component.
+
+#### [svelte/store](https://svelte.dev/docs/svelte-store)
+
+A flexible and scalable reactive state handling library.
+
+#### [svelte/motion](https://svelte.dev/docs/svelte-motion)
+
+Writable stores whose values have values that change over a fixed period of time or change based on physics springs.
+
+#### [svelte/transition](https://svelte.dev/docs/svelte-transition)
+
+Svelte template files provide something they call "directives" that control an element's behavior in some way. The transition module gives a bunch of nice defaults (and allows a simple method of defining your own) transitions that dictate how an element will be transitioned in when it needs to be rendered or transitioned out when it gets unmounted.
+
+#### [svelte/animate](https://svelte.dev/docs/svelte-animate)
+
+This module is similar to transition but is specific to when you have a list of elements and triggered when the index of an item changes.
+
+#### [svelte/easing](https://svelte.dev/docs/svelte-easing)
+
+This is the common easing functions that can be used as parameters in transition or animate functions. They even have a [visualizer playground here](https://svelte.dev/examples/easing).
+
+#### [svelte/action](https://svelte.dev/docs/svelte-action)
+
+Actions are functions that are called when an element is created. If they return an object with a `destroy` method, it'll be called after that element gets unmounted. TLDR here is that Svelte allows you to make custom `use:` directives.
+
+### Compiler and Compiler API
+
+It's pretty neat that you can hack on the [svelte compiler](https://svelte.dev/docs/svelte-compiler) if you want. There are APIs for componenets on the [client side](https://svelte.dev/docs/client-side-component-api) and the [server side](https://svelte.dev/docs/server-side-component-api). If your project's needs dictate, you can [trivially compile out](https://svelte.dev/docs/custom-elements-api) to [custom elements](https://html.spec.whatwg.org/multipage/custom-elements.html#custom-elements) if you want.
+
+The compiler's job is to make sure as little code is delivered to the user as possible. It is really good at it's job. While benchmarks aren't always a perfect signal, or the only metric to consider, [take a look](https://krausest.github.io/js-framework-benchmark/2023/table_chrome_115.0.5790.98.html).
+
+![Duration Benchmarks](/assets/img/benchmarks-duration.png)
+![Startup Benchmarks](/assets/img/benchmarks-startup.png)
+![Memory Allocated Benchmarks](/assets/img/benchmarks-memory.png)
+
+## That's it?
+
+No, that's _just_ Svelte, the frontend/component framework. The next biggest "out of the box" thing this ecosystem provides is SvelteKit.
+
+The team knows that your UI components are only one piece to creating great experiences for your users. As such, they've created a meta-framework, aka application framework. I think this is fascinating and is becoming [more](https://www.solidjs.com/) and [more](https://qwik.builder.io/) of a pattern in the broader JS ecosystem. The core team, the defacto "experts" of the frontend framework has considered and designed a flexible application framework that they think is the _best_ way to build Svelte apps. And what is great is that if you don't agree, you can still roll your own set up using whatever you want.
+
+Let's take a quick look at what capabilities it provides. The list is surprisingly small, and I'm going to take liberties and group them as I see fit based on what question they help answer. And not like the documentation thinks is best, which is the pattern I used in the previous Svelte focused section.
+
+### Deverloper Experience
+
+- [Creating](https://kit.svelte.dev/docs/creating-a-project) and [structuring a project](https://kit.svelte.dev/docs/project-structure): "What's the best way to work on Svelte apps?"
+
+### Application Features
+
+- Loading [data](https://kit.svelte.dev/docs/load) and [pages](https://kit.svelte.dev/docs/page-options): "How does the server send stuff to the client?"
+- [Form actions](https://kit.svelte.dev/docs/form-actions): "How's the client send stuff to the server?"
+- [Routing](https://kit.svelte.dev/docs/routing): "What constitutes a page and how do you navigate them?"
+- [State management](https://kit.svelte.dev/docs/state-management): "How does the client keep track of state over the term of the user's session?"
+
+### Deployment
+
+- A super flexible story around [building](https://kit.svelte.dev/docs/building-your-app) and [deploying](https://kit.svelte.dev/docs/adapters) Svelte applications: "How do you get your Svelte app to your users?"
+
+Just like Svelte, the [SvelteKit docs](https://kit.svelte.dev/docs/introduction) are fantastic and comprehensive - give them a read.
+
+## And that's just the nuts and bolts
+
+High quality software is awesome and if you don't have that, your technology ecosystem is dead on arrival. But fortunately, the core team didn't stop there and has really focused on the pedagogy of the system they provide too.
+
+As stated previously, their official documentation is comprehensive and well considered. If that's not your preferred learning style, they have interactive tutorial walk-throughs for both [Svelte](https://learn.svelte.dev/tutorial/welcome-to-svelte) and [SvelteKit](https://learn.svelte.dev/tutorial/introducing-sveltekit). Sometimes just playing is the best method and so they also have a [REPL](https://svelte.dev/repl/hello-world?version=4.1.1).
+
+Additionally, they contribute video based [learning resources](https://frontendmasters.com/courses/svelte/) to other technology learning platforms too. They've also published [example apps](https://kit.svelte.dev/docs/additional-resources#examples) and their SvelteKit CLI will optionally scaffold more realistic starter projects too.
+
+If more realtime or specific-to-your-context help is needed, they operate an active [discord server](https://svelte.dev/chat) with dedicated help channels and promote a [tag usage on Stackoverflow](https://stackoverflow.com/questions/tagged/sveltekit).
+
+Needless to say, they don't just give you keys to a sports car without a useful manual..
+
+On top of all this they provide an official language support for the VSCode editor, which also shows inline compile-time accessibility check warnings.
+
+## The broader active community
+
+The non-core Svelte community, as far as JS projects go, can be described as "well organized". The main organization, and I use that term loosley here, is [Svelte Society](https://sveltesociety.dev/). They do a good job of describing themselves and their purpose:
+
+> We are a volunteer global network of Svelte fans that strive to promote Svelte and its ecosystem. As a service to the community, this site is a central index of events, a components directory, as well as recipes and other useful resources.
+
+They organize and facilitate the [Svelte Summit](https://www.sveltesummit.com/), run a [youtube channel](https://www.youtube.com/SvelteSociety) and the [Svelte Radio podcast](https://www.svelteradio.com/) where they interview and highlight activity within the broader Svelte ecosystem, and
+
+In my own words, they are a sort of svelte-focused-quasi-news-outlet/education-platform and a svelte content aggregator hub. Needless to say, a real boon to any open source ecosystem that is hard to under state.
+
+However, in my opinion, I think their most important contribution to the broader community is their partnership with the core svelte team in codifying the [official community spaces code of conduct](https://github.com/sveltejs/community/blob/main/CODE_OF_CONDUCT.md). In my opinion, this is a huge edge over other options. You will maybe see a code of conduct or contribution guidelines in specific repos but you just don't see an _official declaration_ of the community that they are steadfast in the commitment in not-being-a-dick and being just a generally laid back and inviting community.
+
+## And finally
+
+So, yes, the svelte ecosystem sounds really robust and comprehensive. But you might be asking, "I use all these other packages in my other frontend ecosystem, does svelte provide 1 to 1 replacements for those?"
+
+Unfortunately, the answer is complicated. Short answer, "maybe"? Longer answer, "it almost certainly doesn't matter". Let me explain, yes, there _may be_ a direct replacement either provided directly by the core team or from the active Svelte community. But even if there isn't, if you're coming from the larger, more broadly used framework, odds are it actually looks like this:
+
+![Integration Sandwich](/assets/img/integration-sandwich.png)
+
+Thankfully, due to the architectural choices and philosophy of not straying from the web platform too much, the core team makes using native JS packages trivial. There is no wrapper necessary. If you want it to support the reactivity feature of svelte, it is trivial to import it into a svelte store and use it directly too.
+
+All this means that the ecosystem diagram from earlier in this post actually looks like this:
+
+![Ecosystem Diagram Expanded](/assets/img/ecosystem-diagram-expanded.png)
+
+Personally, I think the web _needs_ the Svelte ecosystem. It is driving things forward in really interesting and positive ways. Definitely recommend that you give it a deep dive sometime - it is really a joy to prototype and use.
+
+_Note: This is the more comprehensive article form of [a talk](/talks/svelte-ecosystem-overview) I gave internally at [Rightpoint](https://www.rightpoint.com/)'s FED Roundtable_

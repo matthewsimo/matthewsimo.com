@@ -1,0 +1,110 @@
+---
+id: '005'
+title: 'Stitches & Storybook Integration'
+img: 'https://images.unsplash.com/photo-1558522195-e1201b090344?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2970&q=80'
+imgAttribution: 'Photo by <a href="https://unsplash.com/@purzlbaum?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Claudio Schwarz</a> on <a href="https://unsplash.com/s/photos/handshake?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>'
+tone: 'light'
+---
+
+I had recently started a new project and didn't have any hard requirements about styling solutions, so I needed to pick something. I decided to go with the [Stitches](https://stitches.dev/) library, which I'd been eyeing for a while. This post isn't my review but here's a short list of my initial thoughts in case you're curious:
+
+Pros:
+
+- Fantastic DX, it's really pleasant to work with
+- Once you understand the concept of the theme, scales, & tokens, it's really intuitive and productive
+- Architecturally, I think it's great. As a consumer you have a lot of control but it will stay out of your way if you want too. You don't have to endlessly tinker to get to working on your site's problems.
+
+Cons:
+
+- Still young, it isn't as mature as some other approaches so you may run into oddities or a less than ideal compatibility story with common tooling (keep reading!)
+- Similar to previous, but it has a smaller user base which means there isn't as much published content out there to help with debugging issues.
+- Due to it's feature set and flexibility some of it's typings are complex and hard to approach I think.
+
+One issue I ran into was having Storybook & Stitches play nice with each other. This is sad because, in my mind, they are both component-driven tooling that have a strong focus on DX.
+
+This is actually quite common, I've been lurking in the Stitches discord and have seen this question come up a number of times in just a month. There are some [old tickets and discussions](https://github.com/modulz/stitches/discussions/213) that I took and modified for this solution.
+
+The long and short of it is that Stitches' `Styled` component's `as` & `css` props are _too_ flexible for Storybook to make sense of and just "do the right thing" when rendering controls for the variants and props of a component.
+
+Here is a solution that will help you pass Storybook the proper type so you get a much more friendly interface. I put it in a [gist](https://gist.github.com/matthewsimo/dbcaa136ea9972dba5e5e6c8ae5f2c20) to help with the copy/pasting/forking...
+
+It is basically just a utility that helps shake out the Stitches props we don't want.
+
+```ts filename="type-utils.ts"
+// File: type-utils.ts
+import type * as Stitches from '@stitches/react';
+
+interface StitchesMedia {
+	[x: string]: any;
+	// Add/remove what you want to omit from SB, we're using this currently
+	initial?: any;
+	as?: any;
+	css?: Stitches.CSS;
+}
+
+// We exclude these type properties from the `ComponentVariants` type so that storybook can more
+// easily understand the type arguments. We exclude `"true"` and `"false"` strings as well since
+// stitches also adds these, and they aren't necessary for storybook controls.
+type StitchesPropsToExclude = 'true' | 'false' | StitchesMedia;
+
+export function modifyVariantsForStory<ComponentVariants, ComponentProps, ComponentType>(
+	component: ((props: ComponentProps) => JSX.Element) | ComponentType
+) {
+	type ComponentStoryVariants = {
+		[Property in keyof ComponentVariants]: Exclude<
+			ComponentVariants[Property],
+			StitchesPropsToExclude
+		>;
+	};
+
+	type ComponentStoryProps = Omit<ComponentProps, keyof ComponentVariants> & ComponentStoryVariants;
+
+	return component as unknown as (props: ComponentStoryProps) => JSX.Element;
+}
+```
+
+And then, you can use it like so:
+
+```tsx filename="Example.tsx"
+// File: Example.tsx
+import type * as Stitches from '@stitches/react';
+import { modifyVariantsForStory } from 'type-utils';
+import { styled } from '../stitches.config';
+
+const Example = styles('div', {
+	// ... Styles & Variants
+});
+
+export default Example;
+
+// Only export/use these in Storybook since they are just for the Stitchs x SB handshake
+// Can be here or in the story
+type ExampleVariants = Stitches.VariantProps<typeof Example>;
+interface ExampleProps extends ExampleVariants {}
+// Use this as the type in Story; i.e. `ComponentMeta<typeof ButtonStory>`
+export const ExampleStory = modifyVariantsForStory<ExampleVariants, ExampleProps, typeof Example>(
+	Example
+);
+```
+
+And in your component's story:
+
+```tsx filename="Example.stories.tsx"
+// File: Example.stories.tsx
+import React from 'react';
+import { ComponentStory, ComponentMeta } from '@storybook/react';
+import Example, { ExampleStory } from './Example';
+
+export default {
+	title: 'Example',
+	component: Example
+} as ComponentMeta<typeof ExampleStory>;
+
+const Template: ComponentStory<typeof ExampleStory> = (args) => <Example {...args} />;
+export const Default = Template.bind({});
+Default.args = {
+	children: 'Example usage'
+};
+```
+
+And that's it, Storybook should now properly interpret the variants and properly render knobs accordingly for your component. Your mileage may vary, but I hope it helps you - good luck!

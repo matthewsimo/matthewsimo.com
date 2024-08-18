@@ -1,0 +1,133 @@
+---
+id: '023'
+title: 'The two complexities'
+img: 'https://images.unsplash.com/photo-1633633696128-fa32069a7c62?q=80&w=2680&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+imgAttribution: 'Photo by <a href="https://unsplash.com/@vincentiu?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Vincentiu Solomon</a> on <a href="https://unsplash.com/photos/a-black-and-white-photo-with-a-red-spot-in-the-center-N2zxMUDwT4I?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>'
+---
+
+
+## Grug
+
+Have you ever read or watched something that stuck with you and won't let you go?
+
+I came across such a piece of technical writing last week: [Grug Brain](https://grugbrain.dev)
+
+![grug](https://grugbrain.dev/grug.png)
+
+It's long, and the syntax is sometimes hard to parse, but if you can power through, it's equal parts entertaining and profound. I recommend reading it.
+
+The reason my brain keeps going back to it, I think, is because there is one thing that is only hinted at that I think is an important distinction.
+
+## The two complexities
+
+Grug talks about complexity in general terms. And, for the purposes of his thesis, that is entirely reasonable.
+
+> complexity very, very bad
+
+Here's the thing, in my head, I have two main buckets that I use to categorize complexity.
+
+1. Manufactured complexity
+2. Innate complexity
+
+Most points of the Grug article seem to focus on the first kind. They definitely are not the same though, and I'd even say you can't deal with them in the same way either.
+
+### Manufactured complexity
+
+Manufactured complexity is the complexity that humans bring to topics. Things like what tools, processes, and systems that we choose to use. These don't really have anything to do with the problems we are building software to solve.
+
+This type of complexity is unavoidable, however. We need tools, processes, and systems to solve problems. We need our communication, editing, and analysis tools. We need our processes to structure, prioritize, and ensure completion of the work. We need our ticketing systems, language ecosystems, and CI/CD systems and infrastructure.
+
+The trick with dealing with this is covered well in the article. Basically, we have to be vigilant with what we let in. Carry your club.
+
+Allowing unnecessary complexity into each of these sub-categories will manifest pain for the project and teams in different ways. In my experience, the latter seems to be the most prevalent but the easiest to protect against or fix.
+
+### Innate complexity
+
+There's another type that is much more challenging to manage. Innate complexity is the complexity fundamental to the problems you're solving.
+
+Building a worldwide asynchronous distributed system to sell your widgets; or to sell ads? Building flight control systems?
+
+<figure>
+  <a href="https://science.nasa.gov/people/margaret-hamilton/"><img alt="Computer scientist Margaret Hamilton poses with the Apollo guidance software she and her team developed at MIT" src="https://smd-cms.nasa.gov/wp-content/uploads/2023/07/Margaret_Hamilton.jpg?w=2560&format=webp" /></a>
+  <figcaption class="text-center">That's a lot of code!</figcaption>
+</figure>
+
+No doubt, there's an element of this in every project. Big or small, you will have some of this. If for no other reason than computers are inherently complex. Because, to get a rock to think how you want, you have to rely on decades of legacy systems.
+
+You cannot reduce this complexity. Your best hope is to isolate and abstract it. Think hard on this type of complexity, you're stuck with it.
+
+## The complexity budget
+
+What are we to do then? Unfortunately, there's not a one-size-fits-all solution here... The best we can do is to try and manage it.
+
+Here's the mental model I use, maybe you'll find it helpful. If you have your own, I'd love to hear about other perspectives on this - [let me know](mailto:hi@matthewsimo.com)!
+
+<div class="my-20 text-2xl">
+
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+  <mi>C</mi>
+  <mo>=</mo>
+  <mrow data-mjx-texclass="ORD">
+    <mo stretchy="false">(</mo>
+    <mi>I</mi>
+    <mo>&#xB7;</mo>
+    <mi>M</mi>
+    <msubsup>
+      <mo stretchy="false">)</mo>
+      <mrow data-mjx-texclass="ORD">
+        <mi>D</mi>
+        <mn>1</mn>
+      </mrow>
+      <mi>N</mi>
+    </msubsup>
+  </mrow>
+  <mo>+</mo>
+  <mrow data-mjx-texclass="ORD">
+    <mo stretchy="false">(</mo>
+    <mi>I</mi>
+    <mo>&#xB7;</mo>
+    <mi>M</mi>
+    <msubsup>
+      <mo stretchy="false">)</mo>
+      <mrow data-mjx-texclass="ORD">
+        <mi>D</mi>
+        <mn>2</mn>
+      </mrow>
+      <mi>N</mi>
+    </msubsup>
+  </mrow>
+  <mo>+</mo>
+  <mo>.</mo>
+  <mo>.</mo>
+  <mo>.</mo>
+  <mo>+</mo>
+  <mrow data-mjx-texclass="ORD">
+    <mo stretchy="false">(</mo>
+    <mi>I</mi>
+    <mo>&#xB7;</mo>
+    <mi>M</mi>
+    <msubsup>
+      <mo stretchy="false">)</mo>
+      <mrow data-mjx-texclass="ORD">
+        <mi>D</mi>
+        <mi>n</mi>
+      </mrow>
+      <mi>N</mi>
+    </msubsup>
+  </mrow>
+</math>
+
+</div>
+
+Put another way:
+
+> For each domain (`D`) within your system, its complexity can be described as its innate complexity (`I`) multiplied by any manufactured complexity (`M`) all exponentiated by the number of people (`N`) needing to communicate about that domain. Your system's total complexity (`C`) is the sum of all of its domains.
+
+### A few things to keep in mind
+
+1. Just as different people have different tolerances for complexity of different types, different teams will have different tolerances of complexity they can collectively put up with. Which means it is smart to restrict how many people are exposed to a domain to a reasonable limit while avoiding the [bus problem](https://en.wikipedia.org/wiki/Bus_factor).
+
+2. All ordered systems tend toward disorder. It's an ongoing process; use constant vigilance. Entropy is a bitch.
+
+3. Managing complexity is just a factor that impacts your agility. It will sneak up on you if you aren't careful. Do your best, but stay focused on delivering.
+
