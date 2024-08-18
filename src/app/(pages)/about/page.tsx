@@ -1,4 +1,4 @@
-import CopyOnClick from "@/components/copyOnClick";
+import CopyOnClick from "@/components/copy-on-click";
 import Link from "@/components/link";
 import { anchorClass, codeClass, gridClass } from "@/lib/class-utils";
 import { formatDistanceToNow } from "date-fns/formatDistanceToNow";
