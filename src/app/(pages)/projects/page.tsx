@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { anchorClass, gridClass } from "@/lib/class-utils";
 import LinkIcon from "@/components/icons/link";
 import CodeIcon from "@/components/icons/code";
@@ -55,15 +56,18 @@ export default function Projects() {
       <div className="space-y-6 pb-10">
         <h1 className="text-4xl font-semibold">Projects</h1>
         <p>
-          The vast majority of my day-to-day work is under NDA so I can't
-          feature it here but here's a random collection of professional and
-          hobby projects.
+          The vast majority of my day-to-day work is under NDA so I can&apos;t
+          feature it here but here&apos;s a random collection of professional
+          and hobby projects.
         </p>
       </div>
 
       <ul className="space-y-10">
         {projects.map(({ title, link, desc, source, img }) => (
-          <li className="space-y-2 p-4 hover:bg-gradient-to-br hover:from-main-700/20 hover:to-main-800/20 rounded">
+          <li
+            key={link}
+            className="space-y-2 p-4 hover:bg-gradient-to-br hover:from-main-700/20 hover:to-main-800/20 rounded"
+          >
             <h2 className="text-xl font-semibold inline-block">{title}</h2>
             <p className="">{desc}</p>
             <footer className="pt-4">
@@ -91,7 +95,7 @@ export default function Projects() {
             </footer>
             {img && (
               <a href={link}>
-                <img
+                <Image
                   className="py-4"
                   src={img}
                   alt={`Screenshot of ${title}`}

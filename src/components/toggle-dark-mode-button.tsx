@@ -47,7 +47,7 @@ const ToggleDarkModeButton = ({ className = "" }) => {
       prefersDark.addEventListener("change", matchListener);
     }
     return () => prefersDark.removeEventListener("change", matchListener);
-  }, []);
+  }, [isListenerDisabled]);
 
   return (
     <button

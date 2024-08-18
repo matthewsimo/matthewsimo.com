@@ -8,12 +8,15 @@ export default function Uses() {
         <h1 className="text-4xl font-semibold">Uses</h1>
 
         <p className="text-lg">
-          Here's a breakdown of the tools and stuff I use day-to-day.
+          Here&apos;s a breakdown of the tools and stuff I use day-to-day.
         </p>
       </div>
 
       {usesData.map((section) => (
-        <section className="space-y-8 py-4">
+        <section
+          className="space-y-8 py-4"
+          key={section.title.split(" ").join("-")}
+        >
           <h2 className="text-3xl">{section.title}</h2>
 
           {section.items.length > 0 && (
@@ -21,12 +24,12 @@ export default function Uses() {
               {section.items.map(({ name, desc }) => {
                 const Desc = desc;
                 return (
-                  <>
+                  <div key={name.toLowerCase().split(" ").join("-")}>
                     <dt className="text-xl">{name}</dt>
                     <dd className="pb-4">
                       <Desc />
                     </dd>
-                  </>
+                  </div>
                 );
               })}
             </dl>
