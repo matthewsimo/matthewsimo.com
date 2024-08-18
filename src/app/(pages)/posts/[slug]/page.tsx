@@ -1,17 +1,12 @@
 import PostIntro from "@/components/post-intro";
 import { gridClass } from "@/lib/class-utils";
-import { getPost } from "@/lib/posts";
+import { getPost, getPosts } from "@/lib/posts";
 
 export async function generateStaticParams() {
-  // const posts = await fetch("https://.../posts").then((res) => res.json());
-
-  const posts = [{ slug: "slug" }, { slug: "jasd" }];
-
-  const params = posts.map(({ slug }) => ({
+  const posts = await getPosts();
+  return posts.map(({ slug }) => ({
     slug,
   }));
-  console.log(params);
-  return params;
 }
 
 export default async function Post({ params }: { params: { slug: string } }) {
