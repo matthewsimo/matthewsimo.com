@@ -16,7 +16,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width" />
         <link rel="me" href="https://mastodon.social/@matthewsimo" />
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title="Blog RSS"
+          href="https://www.matthewsimo.com/feed.xml"
+        />
       </head>
       <GoogleTagManager gtmId="G-4SBJQ1ZHYZ" />
       <body className={`font-sans text-main`}>{children}</body>

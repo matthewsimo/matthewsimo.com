@@ -1,4 +1,9 @@
 import { MDXProvider } from "@mdx-js/react";
+import rehypePrism from "rehype-prism-plus";
+import rehypeCodeTitles from "rehype-code-titles";
+import remarkGfm from "remark-gfm";
+import rehypeSlug from "rehype-slug";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import { MDXRemote, MDXRemoteProps } from "next-mdx-remote/rsc";
 import Link from "./link";
 import Box from "./box";
@@ -34,6 +39,17 @@ export function MDX(props: MDXRemoteProps) {
     <div className="prose line-numbers">
       <MDXRemote
         {...props}
+        options={{
+          mdxOptions: {
+            remarkPlugins: [remarkGfm],
+            rehypePlugins: [
+              rehypePrism,
+              rehypeCodeTitles,
+              rehypeSlug,
+              [rehypeAutolinkHeadings, { behavior: "wrap" }],
+            ],
+          },
+        }}
         components={{ ...components, ...(props.components || {}) }}
       />
     </div>
