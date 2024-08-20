@@ -1,6 +1,7 @@
-import PostIntro from "@/components/post-intro";
+import { baseUrl } from "@/app/sitemap";
 import { gridClass } from "@/lib/class-utils";
 import { getPost, getPosts } from "@/lib/posts";
+import PostIntro from "@/components/post-intro";
 import { MDX } from "@/components/mdx";
 
 export async function generateStaticParams() {
@@ -10,7 +11,38 @@ export async function generateStaticParams() {
   }));
 }
 
-export default async function Post({ params }: { params: { slug: string } }) {
+type PostProps = { params: { slug: string } };
+export async function generateMetadata({ params }: PostProps) {
+  const post = await getPost(params.slug);
+  if (!post) {
+    return;
+  }
+
+  let { title, date: publishedTime, img } = post;
+  let ogImage = img ? img : `${baseUrl}/og?title=${encodeURIComponent(title)}`;
+
+  return {
+    title,
+    openGraph: {
+      title,
+      type: "article",
+      publishedTime,
+      url: `${baseUrl}/posts/${post.slug}`,
+      images: [
+        {
+          url: ogImage,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      images: [ogImage],
+    },
+  };
+}
+
+export default async function Post({ params }: PostProps) {
   const post = await getPost(params.slug);
 
   return (
