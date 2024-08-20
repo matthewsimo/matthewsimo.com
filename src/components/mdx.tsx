@@ -17,18 +17,19 @@ type MDXHeadingProps = DetailedHTMLProps<
   HTMLAttributes<HTMLHeadingElement>,
   HTMLHeadingElement
 >;
-const makeHeading =
-  (level: HeadingProps["level"] = 1) =>
-  (props: MDXHeadingProps) =>
-    <Heading as={level ? `h${level}` : "h1"} level={level} {...props} />;
+function makeHeading(as: HeadingProps["as"], level: HeadingProps["level"]) {
+  return (props: MDXHeadingProps) => (
+    <Heading as={as} level={level} {...props} />
+  );
+}
 
 const components: ComponentProps<typeof MDXProvider>["components"] = {
-  h1: makeHeading(1),
-  h2: makeHeading(2),
-  h3: makeHeading(3),
-  h4: makeHeading(4),
-  h5: makeHeading(5),
-  h6: makeHeading(6),
+  h1: makeHeading("h1", 2),
+  h2: makeHeading("h2", 3),
+  h3: makeHeading("h3", 4),
+  h4: makeHeading("h4", 5),
+  h5: makeHeading("h5", 5),
+  h6: makeHeading("h6", 6),
   a: Link,
   Link,
   Heading,

@@ -1,0 +1,86 @@
+---
+id: '025'
+title: 'Getting unstuck: A guide for new dev's asking for help'
+img: 'https://images.unsplash.com/photo-1591123195933-b2df071f444b?q=80&w=2969&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+imgAttribution: 'Photo by <a href="https://unsplash.com/@joyshotsphotography?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Erika Fletcher</a> on <a href="https://unsplash.com/photos/brown-and-white-spotted-deer-on-green-grass-during-daytime-wHdFa4F1zRA?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>'
+---
+Getting unstuck: A guide for new dev's asking for help
+
+I've been a developer for about 15 years, and there is one simple fact I've learned in that time: There will be times when the software you and your team write will not work as expected.
+
+Either you will struggle with code you wrote or some external dependency you are being forced to use. These situations are inevitable, so don't be surprised. In this post, let's put aside the specific situation or context, as it isn't as important as _how_ you collaborate with your team to get help and move past it.
+
+This isn't something that gets covered in CompSci classes or dev bootcamps, but it is vital to being a productive software engineer. If this isn't something you can learn and apply, you'll end up slowing the entire team down and impacting morale.
+
+These tips are influenced by my experiences and what I've personally found to be successful. This is definitely in the 'soft skills' domain, so take what you find useful and leave what you don't. I'm not your mom, do what you want.
+
+## Don't Panic
+
+Before we dive in, a good thing to remember is that you are not alone. Everyone has been in your shoes before. It's easy to feel like you're the only one struggling, but that's just not the case. It's a normal part of a complex and challenging job, so just accept it.
+
+The fact that you're stuck on something is not an indication of your quality as a software developer. __How you respond in the situation is__, and that is what I want to focus on.
+
+[Got your towel?](https://en.wikipedia.org/wiki/The_Hitchhiker%27s_Guide_to_the_Galaxy) Good. Let's crack on.
+
+## Don't Be Helpless
+
+Firstly, _when_ you decide to ask for help matters a lot. Too early and you're the person that no one wants to work with because everyone else ends up having to do your work. Too late and you'll be wasting your time. You don't want to be at either end of the spectrum. I'd say err towards the latter, but if people are asking for status updates or your issue will become a blocker for others, then be transparent.
+
+When you do decide to reach out to your team for help, there are some simple table stakes that most people will expect you to have done. Here's a list of those things that might apply to your situation:
+
+- **Read the error logs/stack traces.** It is understandable to try and ignore them because they're often a blob of dense and hard-to-parse info, but there is gold in there. They'll tell you exactly where the issue is—the least you can do is read them!
+- **Working with a library or integrating 3rd party code?** Are there docs? Did you read them? Docs aren't always a silver bullet, but they'll help you avoid a vast number of basic misunderstandings. People worked hard on putting them together—it's probably worth giving them a quick skim at the very least. They aren't perfect, and depending on the processes for that team, they might accidentally go stale or out of sync. If you have access to the unminified source code, all the better—F12/Go to definition is your best bet.
+- **Ask a search engine (or LLM).** Too easy not to do.
+
+Another important thing here is to understand that these things happen. _Don't blame others, take it as a personal failing, or associate blame._ Really, no one cares—just resolve it and move past it. Bonus points for adding levity to the situation; there's no reason we can't laugh or enjoy ourselves while building software.
+
+## Set Context
+
+When you get really in the weeds, you can implicitly have all the necessary context in your head that is essential to understand in order to begin solving the issue at hand. Your job is to supply this context as concisely as possible to the folks you're expecting help from.
+
+Useful details might include:
+
+- A link to the ticket you're working to resolve
+- Error logs/stack traces
+- API endpoints/external services involved
+- 3rd party libraries being used
+- A link to the branch or make a PR and add comments to the area you know to be the root cause
+- Screenshots/video of what's happening
+
+## Async If Possible
+
+One thing to keep in mind as you're in the trenches struggling is that others are (probably) frantically working on their own tickets and problems. Becoming a roadblock for others _is_ the right play in certain situations but not that often. Try to get help in an asynchronous manner. Use your team chat, tag people in PR comments, etc., as a first approach. If folks have time for a synchronous pairing/soundboarding session, then awesome—these can often get things moving surprisingly quickly, but don't expect that. Everyone is busy, perhaps even more than you are!
+
+The next section will be helpful if everyone is just too busy to devote any mental bandwidth to your problems. But if you properly set the context described in the previous section in an async manner, then you help others help you. It might be a simple gotcha that others have run into many times before that you just haven't been exposed to yet. In my opinion, this is the best scenario as it is the most efficient and requires the least amount of cumulative time from the whole team.
+
+## Focus on Forward Progress
+
+Just because you hit a wall on something doesn't mean you still can't be productive. Raise the issue with your team and switch gears. You may not be able to complete everything in your ticket, but isolate your issue and make as much forward progress as possible until you are truly blocked. You could even begin to do cleanup, testing, and other tasks that are often left until right before submitting a PR. If you have reached a hard block, definitely clearly communicate that, but you can still be proactive. Pull the next ticket off the stack and keep moving—don't just languish and be a victim of your circumstances.
+
+## Everyone has something to provide
+
+A lot of times, you just need a soundboard or an alternate perspective to get past a problem. Even if you don't know much about the specific feature or library, lean in. You might not have the answer, but you might have a question that leads to the answer. You'll be surprised how often this happens. And, even if nothing comes of it, you'll have gained exposure to something new that, when the solution is found, you can apply to similar problems in the future.
+
+If you're willing to admit you don't know everything and are willing to learn and grow, you'll quickly find yourself providing help much more than receiving it.
+
+## 'Help Me!' Mad Lib
+
+Just for kicks, here's a sample structure you can fill in the blanks that succinctly implement the tactics I talked about in this post. I hope it helps.
+
+---
+
+I'm trying to do _________ and I'm running into an issue that I could use an extra pair of eyes on.
+
+I'm expecting __________ but I'm seeing _____________.
+
+I've tried _________, ___________, and __________. Has anyone seen anything similar before or have advice? Or does anyone have some free cycles to pair?
+
+Here is my in-progress working branch: [Link to draft PR or diff/file in question].
+
+---
+
+It's short, to the point, and gives your team the necessary context to help you quickly. It's also a great way to practice writing clear and concise bug reports, which is a skill that will serve you well throughout your career.
+
+If it is obvious to you, congratulations — you've figured this out over time! I've seen enough junior devs have difficulty expressing the problem they're experiencing or navigating this challenge to know that this can be a team and individual productivity killer if you let it.
+
+Have any other tips or ideas to help others?
