@@ -1,6 +1,7 @@
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import { backdrop } from "@/lib/class-utils";
+import BlurFade from "@/components/blur-fade";
 
 export default function PagesLayout({
   children,
@@ -10,8 +11,10 @@ export default function PagesLayout({
   return (
     <div className={backdrop}>
       <Header />
-      <main>{children}</main>
-      <Footer />
+      <BlurFade>
+        <main>{children}</main>
+        <Footer />
+      </BlurFade>
     </div>
   );
 }
