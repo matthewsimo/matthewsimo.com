@@ -67,7 +67,7 @@ export default function About() {
 
         <ul>
           <li>
-            Email:
+            Email:{" "}
             <Link
               href={`mailto:hi@${username}.com?subject=Howdy, I saw your site`}
             >
@@ -75,17 +75,17 @@ export default function About() {
             </Link>
           </li>
           <li>
-            Mastodon:
+            Mastodon:{" "}
             <Link href={`https://mastodon.social/@${username}`}>
               @{username}
             </Link>
           </li>
           <li>
-            GitHub:
+            GitHub:{" "}
             <Link href={`http://github.com/${username}`}>{username}</Link>
           </li>
           <li>
-            Duolingo:
+            Duolingo:{" "}
             <Link href={`https://www.duolingo.com/profile/${username}`}>
               {username}
             </Link>
