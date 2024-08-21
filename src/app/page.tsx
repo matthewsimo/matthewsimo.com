@@ -1,3 +1,4 @@
+import Greeting from "@/components/greeting";
 import Link from "@/components/link";
 import { backdrop, gridClass } from "@/lib/class-utils";
 
@@ -5,7 +6,7 @@ export default function Home() {
   return (
     <main className={backdrop}>
       <div className={`${gridClass} leading-relaxed text-xl space-y-8 my-40`}>
-        <span className="text-3xl">Howdy</span>
+        <Greeting />
         <h1 className="text-5xl">I&apos;m Matthew&nbsp;Simo</h1>
 
         <p>

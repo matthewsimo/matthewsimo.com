@@ -18,6 +18,8 @@ export default function RootLayout({
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width" />
+        <link rel="preconnect" href="https://rsms.me/" />
+        <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
         <link rel="me" href="https://mastodon.social/@matthewsimo" />
         <link
           rel="alternate"
@@ -27,7 +29,7 @@ export default function RootLayout({
         />
       </head>
       <GoogleTagManager gtmId="G-4SBJQ1ZHYZ" />
-      <body className={`font-sans text-main`}>{children}</body>
+      <body className={` text-main`}>{children}</body>
     </html>
   );
 }
