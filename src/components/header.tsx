@@ -14,8 +14,8 @@ const headerAnchorClass = `px-5 py-2 underline-offset-auto hover:underline`;
 const Header = () => {
   const [justClicked, setJustClicked] = useState<boolean>(false);
   const pathname = usePathname();
-  const isPage = (path: string): boolean => {
-    return pathname.startsWith(path);
+  const isPage = (path: string): string => {
+    return pathname.startsWith(path) ? currentClass : "";
   };
 
   const onClick = async () => {
@@ -39,11 +39,7 @@ const Header = () => {
                     justClicked && "[&_>_span]:bg-main-700"
                   }`}
                 >
-                  <li
-                    className={`${menuItemClass} ${
-                      isPage("/about") ? currentClass : ""
-                    }`}
-                  >
+                  <li className={`${menuItemClass} ${isPage("/about")}`}>
                     <a
                       onClick={onClick}
                       className={headerAnchorClass}
@@ -52,11 +48,7 @@ const Header = () => {
                       About
                     </a>
                   </li>
-                  <li
-                    className={`${menuItemClass} ${
-                      isPage("/posts") ? currentClass : ""
-                    }`}
-                  >
+                  <li className={`${menuItemClass} ${isPage("/posts")}`}>
                     <a
                       onClick={onClick}
                       className={headerAnchorClass}
@@ -65,11 +57,7 @@ const Header = () => {
                       Posts
                     </a>
                   </li>
-                  <li
-                    className={`${menuItemClass} ${
-                      isPage("/projects") ? currentClass : ""
-                    }`}
-                  >
+                  <li className={`${menuItemClass} ${isPage("/projects")}`}>
                     <a
                       onClick={onClick}
                       className={headerAnchorClass}
