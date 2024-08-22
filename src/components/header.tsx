@@ -42,41 +42,36 @@ const Header = () => {
   };
 
   return (
-    <nav className={`${gridClass} py-20 z-10 relative`}>
-      <div className="flex flex-row justify-between items-baseline md:items-center">
-        <div className="flex flex-col gap-12 md:flex-row md:gap-8">
-          {pathname !== "/" && (
-            <>
-              <h1 className="font-semibold text-2xl">
-                <a href="/">Matthew&nbsp;Simo</a>
-              </h1>
-              <div className="flex flex-row gap-6 items-center">
-                <ul
-                  className={`${menuClass} ${
-                    justClicked && "[&_>_span]:bg-main-700"
-                  }`}
-                >
-                  <NavItem onClick={onClick} href="/about">
-                    About
-                  </NavItem>
-                  <NavItem onClick={onClick} href="/posts">
-                    Posts
-                  </NavItem>
-                  <NavItem onClick={onClick} href="/projects">
-                    Projects
-                  </NavItem>
-                  <span
-                    className={`${menuIndicatorClass}`}
-                    aria-hidden="true"
-                  />
-                </ul>
-              </div>
-            </>
-          )}
+    pathname !== "/" && (
+      <nav className={`${gridClass} py-20 z-10 relative`}>
+        <div className="flex flex-row justify-between items-baseline md:items-center">
+          <div className="flex flex-col gap-12 md:flex-row md:gap-8">
+            <h1 className="font-semibold text-2xl">
+              <a href="/">Matthew&nbsp;Simo</a>
+            </h1>
+            <div className="flex flex-row gap-6 items-center">
+              <ul
+                className={`${menuClass} ${
+                  justClicked && "[&_>_span]:bg-main-700"
+                }`}
+              >
+                <NavItem onClick={onClick} href="/about">
+                  About
+                </NavItem>
+                <NavItem onClick={onClick} href="/posts">
+                  Posts
+                </NavItem>
+                <NavItem onClick={onClick} href="/projects">
+                  Projects
+                </NavItem>
+                <span className={`${menuIndicatorClass}`} aria-hidden="true" />
+              </ul>
+            </div>
+          </div>
+          <ToggleDarkModeButton />
         </div>
-        <ToggleDarkModeButton />
-      </div>
-    </nav>
+      </nav>
+    )
   );
 };
 

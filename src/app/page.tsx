@@ -5,7 +5,9 @@ import { gridClass } from "@/lib/class-utils";
 
 export default function Home() {
   return (
-    <div className={`${gridClass} leading-relaxed text-xl space-y-8 mb-12`}>
+    <div
+      className={`${gridClass} leading-relaxed text-xl space-y-8 mb-12 my-40`}
+    >
       <Greeting />
       <BlurFade>
         <h1 className="text-5xl">I&apos;m Matthew&nbsp;Simo</h1>
