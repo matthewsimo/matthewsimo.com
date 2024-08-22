@@ -13,7 +13,8 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
+  :root,
+  :root.light {
     /* Colors */
     --primary-hue: 200;
     --primary-saturation: 50%;
@@ -29,6 +30,18 @@
 
     --scroll-modifier: 0.6;
     --scroll-position-blur: 0px;
+  }
+
+  :root.dark {
+    --primary-lightness-8: 10%;
+    --primary-lightness-7: 20%;
+    --primary-lightness-6: 28%;
+    --primary-lightness-5: 38%;
+    --primary-lightness-4: 50%;
+    --primary-lightness-3: 62%;
+    --primary-lightness-2: 73%;
+    --primary-lightness-1: 85%;
+    --primary-lightness-0: 97%;
   }
 
   @media (prefers-color-scheme: light) {

@@ -25,66 +25,71 @@ const Header = () => {
   };
 
   return (
-    pathname !== "/" && (
-      <nav className={`${gridClass} py-20 z-10 relative`}>
-        <div className="flex flex-row justify-between items-baseline md:items-center">
-          <div className="flex flex-col gap-12 md:flex-row md:gap-8">
-            <h1 className="font-semibold text-2xl">
-              <a href="/">Matthew&nbsp;Simo</a>
-            </h1>
-            <div className="flex flex-row gap-6 items-center">
-              <ul
-                className={`${menuClass} ${
-                  justClicked && "[&_>_span]:bg-main-700"
-                }`}
-              >
-                <li
-                  className={`${menuItemClass} ${
-                    isPage("/about") ? currentClass : ""
+    <nav className={`${gridClass} py-20 z-10 relative`}>
+      <div className="flex flex-row justify-between items-baseline md:items-center">
+        <div className="flex flex-col gap-12 md:flex-row md:gap-8">
+          {pathname !== "/" && (
+            <>
+              <h1 className="font-semibold text-2xl">
+                <a href="/">Matthew&nbsp;Simo</a>
+              </h1>
+              <div className="flex flex-row gap-6 items-center">
+                <ul
+                  className={`${menuClass} ${
+                    justClicked && "[&_>_span]:bg-main-700"
                   }`}
                 >
-                  <a
-                    onClick={onClick}
-                    className={headerAnchorClass}
-                    href="/about"
+                  <li
+                    className={`${menuItemClass} ${
+                      isPage("/about") ? currentClass : ""
+                    }`}
                   >
-                    About
-                  </a>
-                </li>
-                <li
-                  className={`${menuItemClass} ${
-                    isPage("/posts") ? currentClass : ""
-                  }`}
-                >
-                  <a
-                    onClick={onClick}
-                    className={headerAnchorClass}
-                    href="/posts"
+                    <a
+                      onClick={onClick}
+                      className={headerAnchorClass}
+                      href="/about"
+                    >
+                      About
+                    </a>
+                  </li>
+                  <li
+                    className={`${menuItemClass} ${
+                      isPage("/posts") ? currentClass : ""
+                    }`}
                   >
-                    Posts
-                  </a>
-                </li>
-                <li
-                  className={`${menuItemClass} ${
-                    isPage("/projects") ? currentClass : ""
-                  }`}
-                >
-                  <a
-                    onClick={onClick}
-                    className={headerAnchorClass}
-                    href="/projects"
+                    <a
+                      onClick={onClick}
+                      className={headerAnchorClass}
+                      href="/posts"
+                    >
+                      Posts
+                    </a>
+                  </li>
+                  <li
+                    className={`${menuItemClass} ${
+                      isPage("/projects") ? currentClass : ""
+                    }`}
                   >
-                    Projects
-                  </a>
-                </li>
-                <span className={`${menuIndicatorClass}`} aria-hidden="true" />
-              </ul>
-            </div>
-          </div>
-          <ToggleDarkModeButton />
+                    <a
+                      onClick={onClick}
+                      className={headerAnchorClass}
+                      href="/projects"
+                    >
+                      Projects
+                    </a>
+                  </li>
+                  <span
+                    className={`${menuIndicatorClass}`}
+                    aria-hidden="true"
+                  />
+                </ul>
+              </div>
+            </>
+          )}
         </div>
-      </nav>
-    )
+        <ToggleDarkModeButton />
+      </div>
+    </nav>
   );
 };
 
