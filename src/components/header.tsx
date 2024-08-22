@@ -23,7 +23,7 @@ const Header = () => {
     await waitFor(250);
     setJustClicked(false);
   };
-  console.log({ pathname });
+
   return (
     pathname !== "/" && (
       <nav className={`${gridClass} py-20 z-10 relative`}>
