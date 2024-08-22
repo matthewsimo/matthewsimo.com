@@ -1,6 +1,10 @@
 import "@/app/globals.css";
 import type { Metadata } from "next";
 import { GoogleTagManager } from "@next/third-parties/google";
+import { ThemeProvider } from "next-themes";
+import Footer from "@/components/footer";
+import Header from "@/components/header";
+import { backdrop } from "@/lib/class-utils";
 
 export const metadata: Metadata = {
   title: "Matthew Simo",
@@ -29,7 +33,19 @@ export default function RootLayout({
         />
       </head>
       <GoogleTagManager gtmId="G-4SBJQ1ZHYZ" />
-      <body className={` text-main`}>{children}</body>
+      <body className={`text-main`} suppressHydrationWarning>
+        <ThemeProvider
+          themes={["light", "dark"]}
+          defaultTheme="dark"
+          attribute="class"
+        >
+          <div className={backdrop}>
+            <Header />
+            <main>{children}</main>
+            <Footer />
+          </div>
+        </ThemeProvider>
+      </body>
     </html>
   );
 }

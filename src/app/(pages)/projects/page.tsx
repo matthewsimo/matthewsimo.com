@@ -1,6 +1,7 @@
 import { anchorClass, gridClass } from "@/lib/class-utils";
 import LinkIcon from "@/components/icons/link";
 import CodeIcon from "@/components/icons/code";
+import BlurFade from "@/components/blur-fade";
 
 /* eslint-disable @next/next/no-img-element */
 
@@ -53,59 +54,61 @@ const projects = [
 ];
 export default function Projects() {
   return (
-    <article className={`${gridClass}`}>
-      <div className="space-y-6 pb-10">
-        <h1 className="text-4xl font-semibold">Projects</h1>
-        <p>
-          The vast majority of my day-to-day work is under NDA so I can&apos;t
-          feature it here but here&apos;s a random collection of professional
-          and hobby projects.
-        </p>
-      </div>
+    <BlurFade>
+      <article className={`${gridClass}`}>
+        <div className="space-y-6 pb-10">
+          <h1 className="text-4xl font-semibold">Projects</h1>
+          <p>
+            The vast majority of my day-to-day work is under NDA so I can&apos;t
+            feature it here but here&apos;s a random collection of professional
+            and hobby projects.
+          </p>
+        </div>
 
-      <ul className="space-y-10">
-        {projects.map(({ title, link, desc, source, img }) => (
-          <li
-            key={link}
-            className="space-y-2 p-4 hover:bg-gradient-to-br hover:from-main-700/20 hover:to-main-800/20 rounded"
-          >
-            <h2 className="text-xl font-semibold inline-block">{title}</h2>
-            <p className="">{desc}</p>
-            <footer className="pt-4">
-              <small className="text-sm flex flex-row justify-start flex-wrap gap-4 items-center">
-                {link && (
-                  <a
-                    className={`${anchorClass} inline-block`}
-                    href={link}
-                    title={`Visit ${title}`}
-                  >
-                    <LinkIcon className="inline-block " /> Site
-                  </a>
-                )}
+        <ul className="space-y-10">
+          {projects.map(({ title, link, desc, source, img }) => (
+            <li
+              key={link}
+              className="space-y-2 p-4 hover:bg-gradient-to-br hover:from-main-700/20 hover:to-main-800/20 rounded"
+            >
+              <h2 className="text-xl font-semibold inline-block">{title}</h2>
+              <p className="">{desc}</p>
+              <footer className="pt-4">
+                <small className="text-sm flex flex-row justify-start flex-wrap gap-4 items-center">
+                  {link && (
+                    <a
+                      className={`${anchorClass} inline-block`}
+                      href={link}
+                      title={`Visit ${title}`}
+                    >
+                      <LinkIcon className="inline-block " /> Site
+                    </a>
+                  )}
 
-                {source && (
-                  <a
-                    className={anchorClass}
-                    href={source}
-                    title={`Source Code for ${title}`}
-                  >
-                    <CodeIcon className="inline-block" /> Source
-                  </a>
-                )}
-              </small>
-            </footer>
-            {img && (
-              <a href={link}>
-                <img
-                  className="py-4"
-                  src={img}
-                  alt={`Screenshot of ${title}`}
-                />
-              </a>
-            )}
-          </li>
-        ))}
-      </ul>
-    </article>
+                  {source && (
+                    <a
+                      className={anchorClass}
+                      href={source}
+                      title={`Source Code for ${title}`}
+                    >
+                      <CodeIcon className="inline-block" /> Source
+                    </a>
+                  )}
+                </small>
+              </footer>
+              {img && (
+                <a href={link}>
+                  <img
+                    className="py-4"
+                    src={img}
+                    alt={`Screenshot of ${title}`}
+                  />
+                </a>
+              )}
+            </li>
+          ))}
+        </ul>
+      </article>
+    </BlurFade>
   );
 }

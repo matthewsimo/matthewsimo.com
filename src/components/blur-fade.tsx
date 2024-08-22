@@ -30,7 +30,7 @@ export default function BlurFade({
   children,
   className,
   variant,
-  duration = 0.25,
+  duration = 0.15,
   delay = 0,
   yOffset = 6,
   inView = false,
@@ -49,7 +49,7 @@ export default function BlurFade({
     <AnimatePresence>
       <motion.div
         ref={ref}
-        initial="hidden"
+        initial={"hidden"}
         animate={isInView ? "visible" : "hidden"}
         exit="hidden"
         variants={combinedVariants}
