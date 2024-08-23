@@ -1,5 +1,6 @@
 import { Writable } from "stream";
 import { MDX } from "@/components/mdx";
+import { components } from "@/components/mdx";
 
 async function renderToStaticMarkup(element: any): Promise<string> {
   const ReactDOMServer = (await import("react-dom/server")).default;
@@ -23,6 +24,14 @@ async function renderToStaticMarkup(element: any): Promise<string> {
   });
 }
 
+const staticComponents = {
+  ...components,
+  a: (props: any) => <a {...props} />,
+  Link: (props: any) => <a {...props} />,
+};
+
 export async function renderStaticMDX(content: string): Promise<string> {
-  return await renderToStaticMarkup(<MDX source={content} />);
+  return await renderToStaticMarkup(
+    <MDX source={content} components={staticComponents} />
+  );
 }

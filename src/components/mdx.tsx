@@ -23,7 +23,7 @@ function makeHeading(as: HeadingProps["as"], level: HeadingProps["level"]) {
   );
 }
 
-const components: ComponentProps<typeof MDXProvider>["components"] = {
+export const components: ComponentProps<typeof MDXProvider>["components"] = {
   h1: makeHeading("h1", 2),
   h2: makeHeading("h2", 3),
   h3: makeHeading("h3", 4),
