@@ -7,11 +7,11 @@ import { useTheme } from "next-themes";
 import Mounted from "./mounted";
 import { useEffect, useState } from "react";
 import { useMatchMedia } from "@/lib/use-match-media";
+import { usePrefersTheme } from "@/lib/use-prefers-theme";
 
 const ToggleDarkModeButton = ({ className = "" }) => {
-  const [isListenerDisabled, setIsListenerDisabled] = useState(false);
-  const matches = useMatchMedia("(prefers-color-scheme: dark)");
-  const { theme, setTheme } = useTheme();
+  const { theme, setTheme, isListenerDisabled, setIsListenerDisabled } =
+    usePrefersTheme();
 
   const handleClick = () => {
     if (!isListenerDisabled) {
@@ -19,12 +19,6 @@ const ToggleDarkModeButton = ({ className = "" }) => {
     }
     setTheme(theme === "dark" ? "light" : "dark");
   };
-
-  // Update theme when system preference changes, unless user has manually changed theme
-  useEffect(() => {
-    if (isListenerDisabled) return;
-    setTheme(matches ? "dark" : "light");
-  }, [matches, setTheme, isListenerDisabled]);
 
   return (
     <Mounted>
