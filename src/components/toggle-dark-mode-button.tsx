@@ -24,7 +24,7 @@ const ToggleDarkModeButton = ({ className = "" }) => {
   useEffect(() => {
     if (isListenerDisabled) return;
     setTheme(matches ? "dark" : "light");
-  }, [matches, setTheme]);
+  }, [matches, setTheme, isListenerDisabled]);
 
   return (
     <Mounted>
