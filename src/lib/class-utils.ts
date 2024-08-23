@@ -1,4 +1,4 @@
-export const backdrop = `transition-all ease-in-out duration-100 motion-reduce:transition-none bg-main bg-gradient-to-br from-main-900 to-main-800/70 text-main font-light min-h-screen mx-auto relative overflow-hidden space-y-8`;
+export const backdrop = `transition-all ease-in-out duration-100 motion-reduce:transition-none bg-main bg-gradient-to-br from-main-900 to-main-800/70 text-main font-light min-h-screen mx-auto relative overflow-hidden`;
 
 /** Layout */
 export const gridClass = `page-grid`;

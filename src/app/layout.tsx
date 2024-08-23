@@ -5,6 +5,7 @@ import { ThemeProvider } from "next-themes";
 import Footer from "@/components/footer";
 import Header from "@/components/header";
 import { backdrop } from "@/lib/class-utils";
+import { ScrollArea } from "@/components/scroll-area";
 
 export const metadata: Metadata = {
   title: "Matthew Simo",
@@ -18,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width" />
@@ -33,16 +34,18 @@ export default function RootLayout({
         />
       </head>
       <GoogleTagManager gtmId="G-4SBJQ1ZHYZ" />
-      <body className={`text-main`} suppressHydrationWarning>
+      <body className={`text-main`}>
         <ThemeProvider
           themes={["light", "dark"]}
           defaultTheme="dark"
           attribute="class"
         >
           <div className={backdrop}>
-            <Header />
-            <main>{children}</main>
-            <Footer />
+            <ScrollArea className="w-full h-dvh">
+              <Header />
+              <main>{children}</main>
+              <Footer />
+            </ScrollArea>
           </div>
         </ThemeProvider>
       </body>

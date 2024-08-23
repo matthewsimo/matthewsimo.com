@@ -25,25 +25,23 @@ const Greeting = () => {
   useInterval(animationCycle, loop);
 
   return (
-    <>
-      <motion.span
-        className="text-[128px]"
-        initial={false}
-        style={{
-          fontSynthesis: "none",
-        }}
-        animate={{
-          fontVariationSettings: `"wght" ${wght}, "opsz" ${opsz}`,
-          letterSpacing: `${letterSpacing}rem`,
-        }}
-        transition={{
-          duration: 0.5,
-          ease: "easeInOut",
-        }}
-      >
-        Howdy
-      </motion.span>
-    </>
+    <motion.span
+      className="text-[128px] leading-none pb-8"
+      initial={false}
+      style={{
+        fontSynthesis: "none",
+      }}
+      animate={{
+        fontVariationSettings: `"wght" ${wght}, "opsz" ${opsz}`,
+        letterSpacing: `${letterSpacing}rem`,
+      }}
+      transition={{
+        duration: 0.5,
+        ease: "easeInOut",
+      }}
+    >
+      Howdy
+    </motion.span>
   );
 };
 
