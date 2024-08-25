@@ -1,4 +1,5 @@
-export const backdrop = `transition-all ease-in-out duration-100 motion-reduce:transition-none bg-main bg-gradient-to-br from-main-900 to-main-800/70 text-main font-light min-h-screen mx-auto relative overflow-hidden`;
+export const bgGradient = `bg-main bg-gradient-to-br from-main-900 to-main-800/70`;
+export const backdrop = `transition-all ease-in-out duration-100 motion-reduce:transition-none ${bgGradient} text-main font-light min-h-screen mx-auto relative overflow-hidden`;
 
 /** Layout */
 export const gridClass = `page-grid`;

@@ -27,9 +27,9 @@ export default function About() {
             />
           </div>
           <p>
-            Hi there, I&apos;m Matthew - I fight for the user. I&apos;m a born
-            and raised Texan and have been building things for the web for
-            fifteen years.
+            Hi there, I&apos;m Matthew. <em>I fight for the user!</em> I&apos;m
+            a born and raised Texan and have been building things for the web
+            for over fifteen years.
           </p>
 
           <p>

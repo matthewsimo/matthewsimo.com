@@ -26,7 +26,7 @@ const Greeting = () => {
 
   return (
     <motion.span
-      className="text-[128px] leading-none pb-8"
+      className="text-[96px] md:text-[128px] leading-none pb-8 break-all"
       initial={false}
       style={{
         fontSynthesis: "none",
