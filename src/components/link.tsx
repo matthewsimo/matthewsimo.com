@@ -22,7 +22,7 @@ const Link = (
   return (
     <Comp
       href={href}
-      className={`${allClasses} text-pretty group whitespace-nowrap `}
+      className={`${allClasses} text-pretty group `}
       target={isInternal ? "_self" : `_blank`}
       onClick={onClick ? onClick : () => scrollTo()}
       {...rest}
