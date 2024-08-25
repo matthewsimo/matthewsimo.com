@@ -9,7 +9,7 @@ const Header = () => {
   const pathname = usePathname();
 
   return (
-    <nav className={`${gridClass} py-14 md:py-20 z-10 relative`}>
+    <nav className={`${gridClass} py-14 md:py-20 z-20 relative`}>
       <div
         className={`flex flex-row gap-4 ${
           pathname !== "/" ? "justify-between" : "justify-end"

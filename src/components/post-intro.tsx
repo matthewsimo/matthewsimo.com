@@ -57,7 +57,7 @@ const PostIntro = ({ post }: { post: Post }) => {
 
   return (
     <>
-      <div className="relative w-full mt-[-224px] h-screen max-h-screen px-6 sm:px-8 md:px-10 lg:px-16 flex items-center justify-center overflow-scroll">
+      <div className="z-10 relative w-full mt-[-224px] h-screen max-h-screen px-6 sm:px-8 md:px-10 lg:px-16 flex items-center justify-center overflow-scroll">
         <div
           className={`relative grid grid-cols-6 grid-row-2 text-main border-4 border-main z-10 shadow-lg backdrop-blur-lg sm:max-w-3/4 pr-4`}
         >
