@@ -1,7 +1,7 @@
 import BlurFade from "@/components/blur-fade";
 import { gridClass } from "@/lib/class-utils";
 import { getPosts } from "@/lib/posts";
-import Link from "next/link";
+import Link from "@/components/link";
 
 export default async function Posts() {
   const posts = await getPosts();

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { cn, waitFor } from "@/lib/utils";
+import { cn, scrollTo, waitFor } from "@/lib/utils";
 import { AnchorHTMLAttributes, PropsWithChildren, useState } from "react";
 import {
   Drawer,
@@ -43,10 +43,16 @@ const Nav = () => {
   const [justClicked, setJustClicked] = useState<boolean>(false);
   const [open, setIsOpen] = useState<boolean>(false);
 
-  const onClick = async () => {
+  const onClickDesktop = async () => {
+    scrollTo();
     setJustClicked(true);
     await waitFor(250);
     setJustClicked(false);
+  };
+
+  const onClickMobile = async () => {
+    scrollTo();
+    setIsOpen(false);
   };
 
   return (
@@ -55,13 +61,13 @@ const Nav = () => {
         <ul
           className={`${menuClass} ${justClicked && "[&_>_span]:bg-main-700"}`}
         >
-          <NavItem onClick={onClick} href="/about">
+          <NavItem onClick={onClickDesktop} href="/about">
             About
           </NavItem>
-          <NavItem onClick={onClick} href="/posts">
+          <NavItem onClick={onClickDesktop} href="/posts">
             Posts
           </NavItem>
-          <NavItem onClick={onClick} href="/projects">
+          <NavItem onClick={onClickDesktop} href="/projects">
             Projects
           </NavItem>
           <span className={`${menuIndicatorClass}`} aria-hidden="true" />
@@ -87,21 +93,21 @@ const Nav = () => {
               <ul className={`${menuClass} space-y-8`}>
                 <NavItem
                   className="text-3xl"
-                  onClick={() => setIsOpen(false)}
+                  onClick={onClickMobile}
                   href="/about"
                 >
                   About
                 </NavItem>
                 <NavItem
                   className="text-3xl"
-                  onClick={() => setIsOpen(false)}
+                  onClick={onClickMobile}
                   href="/posts"
                 >
                   Posts
                 </NavItem>
                 <NavItem
                   className="text-3xl"
-                  onClick={() => setIsOpen(false)}
+                  onClick={onClickMobile}
                   href="/projects"
                 >
                   Projects

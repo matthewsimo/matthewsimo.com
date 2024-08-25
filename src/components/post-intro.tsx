@@ -13,25 +13,6 @@ type Post = {
   };
 };
 const PostIntro = ({ post }: { post: Post }) => {
-  const handleScroll = () => {
-    const { scrollY, innerHeight } = window;
-    const modifier =
-      scrollY > innerHeight
-        ? 1
-        : Number(Number(scrollY / innerHeight).toFixed(3));
-
-    document.documentElement.style.setProperty(
-      `--scroll-position-blur`,
-      `${50 * modifier}px`
-    );
-
-    // constrain this to values in 0.6 to 0.85
-    document.documentElement.style.setProperty(
-      `--scroll-modifier`,
-      `${(0.85 - 0.6) * modifier + 0.6}`
-    );
-  };
-
   const [Y, M, D] = post.date.split("-");
   const postDate = format(
     new Date(Number(Y), Number(M) - 1, Number(D)),
@@ -39,9 +20,39 @@ const PostIntro = ({ post }: { post: Post }) => {
   );
 
   useEffect(() => {
+    const handleScroll = () => {
+      const scrollArea = window.document.querySelector(
+        `[data-radix-scroll-area-viewport]`
+      );
+      const scrollY = scrollArea ? scrollArea.scrollTop : 0;
+      const { innerHeight } = window;
+      const modifier =
+        scrollY > innerHeight
+          ? 1
+          : Number(Number(scrollY / innerHeight).toFixed(3));
+
+      document.documentElement.style.setProperty(
+        `--scroll-position-blur`,
+        `${50 * modifier}px`
+      );
+
+      // constrain this to values in 0.6 to 0.85
+      document.documentElement.style.setProperty(
+        `--scroll-modifier`,
+        `${(0.85 - 0.6) * modifier + 0.6}`
+      );
+    };
+
     handleScroll();
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+
+    const scrollArea = window.document.querySelector(
+      `[data-radix-scroll-area-viewport]`
+    );
+
+    if (scrollArea) {
+      scrollArea.addEventListener("scroll", handleScroll);
+      return () => scrollArea.removeEventListener("scroll", handleScroll);
+    }
   }, []);
 
   return (

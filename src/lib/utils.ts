@@ -18,3 +18,10 @@ export function getRandomFloat(min: number, max: number) {
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
+
+export function scrollTo(top: number = 0) {
+  document.querySelector(`[data-radix-scroll-area-viewport]`)?.scrollTo({
+    top,
+    behavior: "smooth",
+  });
+}

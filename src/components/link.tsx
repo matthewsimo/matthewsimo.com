@@ -1,11 +1,14 @@
+"use client";
+
 import NextLink from "next/link";
 import { anchorClass, focusClass } from "@/lib/class-utils";
 import { AnchorHTMLAttributes, PropsWithChildren } from "react";
+import { scrollTo } from "@/lib/utils";
 
 const Link = (
   props: PropsWithChildren<AnchorHTMLAttributes<HTMLAnchorElement>>
 ) => {
-  const { href = "#", children, className, ...rest } = props;
+  const { href = "#", onClick, children, className, ...rest } = props;
 
   const allClasses = className
     ? `${focusClass} ${className}`
@@ -21,6 +24,7 @@ const Link = (
       href={href}
       className={`${allClasses} text-pretty group whitespace-nowrap `}
       target={isInternal ? "_self" : `_blank`}
+      onClick={onClick ? onClick : () => scrollTo()}
       {...rest}
     >
       {children}
