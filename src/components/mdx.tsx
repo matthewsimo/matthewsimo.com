@@ -31,7 +31,7 @@ export const components: ComponentProps<typeof MDXProvider>["components"] = {
   h5: makeHeading("h5", 5),
   h6: makeHeading("h6", 6),
   a: Link,
-  Link,
+  Link: Link,
   Heading,
   Box,
   BestOf,

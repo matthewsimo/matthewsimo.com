@@ -2,7 +2,7 @@
 
 import NextLink from "next/link";
 import { anchorClass, focusClass } from "@/lib/class-utils";
-import { AnchorHTMLAttributes, PropsWithChildren } from "react";
+import { AnchorHTMLAttributes, MouseEvent, PropsWithChildren } from "react";
 import { scrollTo } from "@/lib/utils";
 
 const Link = (
@@ -19,12 +19,19 @@ const Link = (
 
   const Comp = isInternal ? NextLink : "a";
 
+  const handleClick = (e: MouseEvent<HTMLAnchorElement>) => {
+    if (isInternal && typeof window !== "undefined") {
+      scrollTo();
+    }
+    onClick && onClick(e);
+  };
+
   return (
     <Comp
       href={href}
       className={`${allClasses} text-pretty group `}
       target={isInternal ? "_self" : `_blank`}
-      onClick={onClick ? onClick : () => scrollTo()}
+      onClick={handleClick}
       {...rest}
     >
       {children}

@@ -1,7 +1,7 @@
 import Heading from "./heading";
 import Link from "./link";
 
-type BestOfProps = {
+export type BestOfProps = {
   title: string;
   link: string;
 };
