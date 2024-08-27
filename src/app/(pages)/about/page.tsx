@@ -95,11 +95,13 @@ export default function About() {
             <li>
               Discord:{" "}
               <CopyOnClick
-                className={`${anchorClass} inline-block`}
+                className={anchorClass}
                 copyText={`${username}${discordId}`}
               >
-                {username}
-                <span className="text-main-400">{discordId}</span>
+                <span>
+                  {username}
+                  <span className="text-main-400">{discordId}</span>
+                </span>
               </CopyOnClick>
             </li>
           </ul>

@@ -1,7 +1,9 @@
 "use client";
 
-import { waitFor } from "@/lib/utils";
+import { cn, waitFor } from "@/lib/utils";
 import { ButtonHTMLAttributes, PropsWithChildren, useState } from "react";
+import Clipboard from "@/components/icons/clipboard";
+import { motion } from "framer-motion";
 
 type Props = PropsWithChildren<ButtonHTMLAttributes<HTMLButtonElement>> & {
   copyText: string;
@@ -27,18 +29,33 @@ const CopyOnClick = (props: Props) => {
   return (
     <>
       <button
-        className={`${className} ${
-          !copyMsg ? "cursor-copy" : "cursor-default"
-        }`}
+        className={cn(
+          "inline-flex gap-0.5 fill-current",
+          !copyMsg ? "cursor-copy" : "cursor-default",
+          className
+        )}
         onClick={handleClick}
       >
         {props.children}
+        <Clipboard className="w-5 h-5" />
       </button>
       {copyMsg === "Success" && (
-        <span className="inline-block px-0.5">Copied!</span>
+        <motion.span
+          animate={{ opacity: 0 }}
+          transition={{ ease: "easeInOut", duration: 2.75 }}
+          className="inline-block px-1"
+        >
+          Copied!
+        </motion.span>
       )}
       {copyMsg === "Error" && (
-        <span className="inline-block px-0.5">Error Copying!</span>
+        <motion.span
+          animate={{ opacity: 0 }}
+          transition={{ ease: "easeInOut", duration: 2.75 }}
+          className="inline-block px-1"
+        >
+          Error Copying!
+        </motion.span>
       )}
     </>
   );
