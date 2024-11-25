@@ -1,0 +1,105 @@
+---
+id: "026"
+title: "Better design to dev handoff right now"
+img: "https://images.unsplash.com/photo-1569406125624-98ee19b01d4a?q=80&w=2400&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+imgAttribution: 'Photo by <a href="https://unsplash.com/@mitchel3uo?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Mitchell Luo</a> on <a href="https://unsplash.com/photos/men-rowing-boat-H3htK85wwnU?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>'
+---
+
+
+I've previously written about what the future of design and development handoff might look like. The TL;DR of that post is that I expect the process to continue streamlining, reducing inefficiencies, and allowing teams to build products with more value, faster.
+
+However, much of the feedback I received boiled down to: *“That's neat, but what about right now?”*
+
+In this post, I'll attempt to answer this and cover what I think are the areas to focus on for effective handoff right now. Since every team and organization has unique workflows, there isn't a one-size-fits-all solution. Because of this, I'm going to focus on strategies, principles, and goals rather than any specific or overly prescriptive solutions. The latter will be included only as illustrative examples of the former.
+
+I'm going to organize my thoughts about this into three sections:
+
+1. My perspective on responsibilities
+2. Tips for designers
+3. Tips for developers
+
+My hope is this will help guide teams to have better collaboration between designers and developers and ultimately result in better software for our users. I expect a lot of this will be super obvious or already implicit to veterans, but let me know if you think I've missed anything.
+
+
+## My philosophy
+
+To the lay the groundwork, I want to start by explaining my perspective on building _stuff_. I strongly believe that _we all contribute_ to building the final product. If only one individual or small few has agency in the process, the output will be less than it could be. Our greatest strength is our diversity of thought and experiences. If we can harness that effectively, we will have a stronger and more resilient end product. Everyone, in good faith, should be free and empowered to suggest alternative ways to solve the problems we encounter.
+
+However, to make good forward progress, we need to all be pulling in the same direction. We need someone to guide each step of the process. Here's my take on who should be responsible for what:
+
+- **Product Owners/Managers**: Help define the problems that need solving, why they matter, and what success looks like. They are responsible for making sure everyone on the team is aligned on the goals and priorities.
+- **Designers**: Dream up the solution to the problem. They create the visual, interactive elements that make up the product. They are responsible for ensuring everyone understands how the solution works.
+- **Developers**: They make the solution real. They are responsible for making sure the solution matches the dream and communicating technical or time constraints that make it unfeasible.
+
+Lastly, always remember you are _one_ team made of multiple disciplines.
+
+## Tips for designers
+
+### Know your medium
+
+Just as a painter knows and understands the properties of their paints, brushes, and canvas; you need to know the fundamentals of the medium you are designing for.
+
+If you are designing for the web, you need to understand the constraints and capabilities of the web. How's this design respond to the browser dimensions? Have you considered hover/active/focus states of all interactive elements? What is the URL doing throughout this workflow?
+
+If you are designing for mobile, you need to understand the constraints and capabilities of each native mobile ecosystem and the expectations of those users. What devices are you supporting? What are their common patterns, and how will your solutions work within that context?
+
+This is not to say you need to be an expert in every technology, but you need to understand the basics of the medium you are designing for and consider them before designing.
+
+### Be fanatical about clarity
+
+You are dreaming up the solutions, you need to use every tool available to communicate that vision and ensure understanding. This is incredibly difficult as priorities shift, communicating across disciplines is challenging, and you will typically have multiple features in different phases of completeness.
+
+The number of projects I've been on where the design team throws a design asset over the fence and expects people to just interpret it flawless is hilarious. Please, don't do this. If you leave it to the developers to guess what your intententions are, you are making more work for them when they build what they guessed and it isn't right. It isn't going to happen accidentally, you need to be super intentional about it, and it's your responsibility to communicate your design.
+
+Your design is not done when you finish it in Figma and pass it to devs, it's done when the user is using it.
+
+### Eliminate ambiguity
+
+In my experiences, many designers only create design assets for what I call "application at rest". Very often I seem to only see a feature designed in one or two snapshots of its workflow. Ask yourself questions like:
+
+- How's the user even get here?
+- What happens if the user clicks this?
+- What happens if there is no data yet?
+- What happens if there is an error getting the data?
+- How does this scale to different screen sizes?
+- How does this work with different languages? Or text of different lengths?
+
+And so on... Hopefully, you're solving this in a systematic way so that you don't have to solve these things every feature, but they need to do need to be solved.
+
+### Leverage your tools
+
+Our tools are getting so good. Figma is the tool I'm most familiar with, so it will be the basis of all my examples here, but I know it isn't the only one. Figma does quite a lot to help alleviate the previous three points. If you aren't maximally using or shying away from learning one of its newer features, you're really doing yourself and team a disservice.
+
+You can create components, styles, and libraries that help ensure consistency across your designs and make updating and maintence tasks a breeze. You can create interactive prototypes that help communicate the flow of your design. You can create design systems that help ensure consistency across your team's designs. You can even create design tokens that can be exported and used directly in the code to ensure consistency. There is also any number of platform specific design system libraries and plugins you can use. You can mark a design as "dev ready" to ease ambiguity about the state of readyness for a particular design.
+
+Learn and leverage your tools, it makes a massive difference - you'll go further, faster.
+
+## Tips for developers
+
+### Learn fundamentals of design
+
+Just as designers need to know the medium they are designing for, you need to know the fundamentals of design too. You don't need to be an expert in any sense, but you need to understand the core principles. This will help you understand the design decisions and goals, and help you communicate your constraints and concerns more effectively.
+
+Gain some comfort in whatever tool the designers are using. If you can open a design file and understand what's going on, you're going to be able to communicate more effectively and catch potential issues earlier. Going straight to the source instead of waiting for an answer is a superpower.
+
+Additionally, naming things matters to the long term health of an application. If you can, use the same language for consistent concepts across the design and code. Use the same name for components, variants, etc.. This will help ensure that everyone is on the same page and makes communication across disciplines so much easier.
+
+### Create a positive rapport
+
+This is definitely in the "soft skills" category, but it will ultimately make your job easier. If you like talking to your designer and your designer likes talking to you, you're going to be able to communicate more effectively. You're going to be able to ask questions and get answers more easily. You're going to be able to suggest alternatives and get feedback more easily. You're going to be able to collaborate to solve problems in an alternate way if constraints dictate the necessity more easily.
+
+### Clearly communicate constraints
+
+You're the expert in the technology, it is on you to call out when a design won't work because of the timeline or a tech constraint. You need to develop the skill to be able to look at a design and estimate the time & difficulty to implement. You don't have to be perfect, but it is like any skill that you can grow over time. Finding these things earlier in the pipeline can save a ton of time and headache.
+
+If something won't work, don't just say "no" and move on. By know, you should understand the problem at hand, and be able to suggest alternatives that is more feasible. If you can't think of any, ask the designer for their thoughts. You're a team, remember that you're working together to solve a problem. When something won't work, there is often a solution that will more than satisfy the need and be dramatically easier and cheaper to implement & maintain.
+
+### Be curious, no assumptions
+
+It may be the designer's responsibility to effectively communicate the solution. But communication is a two-way street, you have to try to understand it. You can't just passively receive the design and expect to get everything 100%. You need to be curious about the design. Ask questions, and make sure you understand everything there and even things that aren't there. See the questions in the "Eliminate ambiguity" section for examples of things you should feel comfortable with. If you don't understand something, just ask. If you think something is missing, ask. If you think something is wrong or inconsistent, mention it.
+
+The best way I've found is to communicate my understanding after review and then ask them to correct me or fill in any gaps. This can be time consuming process but if you're leveraging your tools well and systemizing your solutions, it should be relatively painless and get faster with time.
+
+## Final thoughts
+
+These may come off as vague principles, but I think that's the best way to approach this. I hope they trigger some inspiration for opportunities your team can work to improve. Every team is different, and every project is different. The specific touchpoints and communication structures you employ will be better off tailored to your unique context. As long as everyone has a shared understanding of the goals, the principles, and strive to work together instead of in their own specific silo everything should work out just fine. If you have any additional advice or ideas, please let me know! I'd love to hear them.
