@@ -5,7 +5,7 @@ import { PropsWithChildren, ReactElement, useEffect, useState } from "react";
 const Mounted = ({
   children,
   initial = null,
-}: PropsWithChildren<{ initial?: ReactElement | null }>) => {
+}: PropsWithChildren<{ initial?: ReactElement<any> | null }>) => {
   const [mounted, setMounted] = useState(false);
   useEffect(() => {
     setMounted(true);

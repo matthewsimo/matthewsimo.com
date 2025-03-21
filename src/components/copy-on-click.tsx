@@ -3,7 +3,7 @@
 import { cn, waitFor } from "@/lib/utils";
 import { ButtonHTMLAttributes, PropsWithChildren, useState } from "react";
 import Clipboard from "@/components/icons/clipboard";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 
 type Props = PropsWithChildren<ButtonHTMLAttributes<HTMLButtonElement>> & {
   copyText: string;

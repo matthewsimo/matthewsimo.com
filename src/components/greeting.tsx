@@ -1,7 +1,7 @@
 "use client";
 import { useInterval } from "@/lib/use-interval";
 import { getRandomFloat, getRandomInt, waitFor } from "@/lib/utils";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { useEffect, useState } from "react";
 
 const Greeting = () => {
