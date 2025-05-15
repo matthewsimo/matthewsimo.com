@@ -50,18 +50,22 @@ export default async function Post(props: PostProps) {
   return (
     <>
       <PostIntro post={post} />
-      <article className={`${gridClass} relative`}>
-        <div className="space-y-6 pb-10">
-          <MDX source={post.content} />
+      <article className={`space-y-6 pb-10 relative`}>
+        <>
+          <div className={`${gridClass} prose line-numbers`}>
+            <MDX source={post.content} />
+          </div>
 
           {Boolean(post.imgAttribution) && (
-            <div className="pt-1 sm:pt-2 xl:pt-3 text-main-300 italic sm:text-lg max-w-prose mx-auto">
+            <div
+              className={`${gridClass} pt-1 sm:pt-2 xl:pt-3  italic sm:text-lg max-w-prose mx-auto`}
+            >
               <small
                 dangerouslySetInnerHTML={{ __html: post.imgAttribution || "" }}
               />
             </div>
           )}
-        </div>
+        </>
       </article>
     </>
   );

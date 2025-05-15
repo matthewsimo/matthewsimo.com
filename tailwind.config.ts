@@ -33,7 +33,7 @@ const defaultStyle = {
 };
 
 const config: Config = {
-  content: ["./src/**/*.{ts,tsx,mdx}"],
+  content: ["./src/**/*.{ts,tsx,mdx}", "./_posts/**/*.mdx"],
 
   theme: {
     extend: {
@@ -103,6 +103,7 @@ const config: Config = {
       typography: () => ({
         DEFAULT: {
           css: {
+            maxWidth: "unset",
             color: color(0),
             fontWeight: 300,
             a: {

@@ -39,23 +39,21 @@ export const components: ComponentProps<typeof MDXProvider>["components"] = {
 
 export function MDX(props: MDXRemoteProps) {
   return (
-    <div className="prose line-numbers">
-      <MDXRemote
-        {...props}
-        options={{
-          mdxOptions: {
-            remarkPlugins: [remarkGfm],
-            rehypePlugins: [
-              rehypePrism,
-              rehypeCodeTitles,
-              rehypeSlug,
-              [rehypeAutolinkHeadings, { behavior: "wrap" }],
-            ],
-          },
-        }}
-        components={{ ...components, ...(props.components || {}) }}
-      />
-    </div>
+    <MDXRemote
+      {...props}
+      options={{
+        mdxOptions: {
+          remarkPlugins: [remarkGfm],
+          rehypePlugins: [
+            rehypePrism,
+            rehypeCodeTitles,
+            rehypeSlug,
+            [rehypeAutolinkHeadings, { behavior: "wrap" }],
+          ],
+        },
+      }}
+      components={{ ...components, ...(props.components || {}) }}
+    />
   );
 }
 
