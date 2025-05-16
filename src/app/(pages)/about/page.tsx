@@ -83,6 +83,12 @@ export default function About() {
               </Link>
             </li>
             <li>
+              Bluesky:{" "}
+              <Link href={`https://bsky.app/profile/${username}.com`}>
+                @{username}.com
+              </Link>
+            </li>
+            <li>
               GitHub:{" "}
               <Link href={`http://github.com/${username}`}>{username}</Link>
             </li>
