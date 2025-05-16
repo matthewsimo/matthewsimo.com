@@ -87,12 +87,6 @@ export default function About() {
               <Link href={`http://github.com/${username}`}>{username}</Link>
             </li>
             <li>
-              Duolingo:{" "}
-              <Link href={`https://www.duolingo.com/profile/${username}`}>
-                {username}
-              </Link>
-            </li>
-            <li>
               Discord:{" "}
               <CopyOnClick
                 className={anchorClass}
