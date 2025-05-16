@@ -11,6 +11,20 @@ export const metadata: Metadata = {
   title: "Matthew Simo",
   description:
     "The website of Matthew Simo, a Software Engineer & UX Designer based in Texas",
+  icons: {
+    icon: [
+      {
+        media: "(prefers-color-scheme: light)",
+        url: "/img/icon-light.svg",
+        href: "/img/icon-light.svg",
+      },
+      {
+        media: "(prefers-color-scheme: dark)",
+        url: "/img/icon-dark.svg",
+        href: "/img/icon-dark.svg",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({

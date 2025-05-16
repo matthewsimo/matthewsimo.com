@@ -24,8 +24,8 @@ export async function GET(request: Request) {
     feedLinks: {
       atom: `${domain}/feed.xml`,
     },
-    image: `${domain}/favicon.jpg`,
-    favicon: `${domain}/favicon.svg`,
+    image: `${domain}/img/favicon.jpg`,
+    favicon: `${domain}/img/icon-light.svg`,
     author,
   });
 
